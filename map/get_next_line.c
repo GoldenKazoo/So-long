@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/08/26 12:03:04 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/08/27 16:14:14 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,17 @@ char	*ft_extract_line(char *stash)
 	return (line);
 }
 
-char	*ft_crop_stash(char *stash)
+char	*ft_crop_stash(char *stash, int fd)
 {
 	int			i;
 	static char	*new_stash;
 
 	i = 0;
+	if (fd == 10000)
+	{
+		free(stash);
+		return (NULL);
+	}
 	while (stash[i] != '\n' && stash[i] != '\0')
 	{
 		i++;
@@ -93,7 +98,9 @@ char	*get_next_line(int fd)
 		stash = ft_strjoin(stash, buffer);
 	}
 	line = ft_extract_line(stash);
-	stash = ft_crop_stash(stash);
+	stash = ft_crop_stash(stash, fd);
 	free(buffer);
 	return (line);
 }
+
+

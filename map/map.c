@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 09:58:46 by zchagar           #+#    #+#             */
-/*   Updated: 2024/08/27 15:44:12 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/08/27 16:22:00 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	ft_map_height(int fd)
 	char	*line;
 
 	line = get_next_line(fd);
+	free(line);
 	height = 0;
 	while (line != NULL)
 	{
@@ -49,11 +50,15 @@ int	ft_map_width(int fd)
 	line = get_next_line(fd);
 	width = 0;
 	roof = ft_strlen(line);
+	free(line);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
 		if (roof != ft_strlen(line))
+		{
+			free(line);
 			return (-1);
+		}
 		width++;
 		free(line);
 		line = get_next_line(fd);
@@ -69,7 +74,7 @@ char	**ft_map_to_tab (t_map *map)
 	map -> tab = malloc (sizeof(char *) * ((map -> height)));
 	while (i < (map -> height))
 	{
-		map -> tab[i] = calloc(sizeof(char), (map -> width + 1));
+		map -> tab[i] = malloc(sizeof(char) * (map -> width + 1));
 		i++;
 	}
 	return (map->tab);
@@ -242,10 +247,21 @@ void	ft_errors(t_map *map)
 
 int main()
 {
+	int		i;
 	t_map	*map;
 
+	i = 0;
 	map = ft_return_map();
 	ft_errors(map);
+	ft_print_tab(map);
+	while (i < (map -> height))
+	{
+		free(map -> tab[i]);
+		i++;
+	}
+	get_next_line(10000);
+	free(map -> tab);
+	free(map);
 }
 
 
