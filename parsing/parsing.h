@@ -5,6 +5,10 @@
 # include <limits.h>
 #include "get_next_line.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
 typedef struct Map
 {
 	int	height;
@@ -14,3 +18,4 @@ typedef struct Map
 
 int	ft_coherence(char *line, int index, t_map *(map), char	*count_elements);
 char	*ft_count_elements(int index, char* elements, char c);
+void	ft_printerror(int error);
