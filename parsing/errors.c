@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 09:25:49 by zchagar           #+#    #+#             */
-/*   Updated: 2024/08/29 16:42:05 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/09/01 14:13:58 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_notchar (char c)
 
 char	*ft_count_elements(int index, char* elements, char c)
 {
-	if(index == 0)
+	if(index == 0 || elements == NULL)
 	{
 	elements[0] = '0';
 	elements[1] = '0';
@@ -38,6 +38,13 @@ char	*ft_count_elements(int index, char* elements, char c)
 }
 int	ft_check_elements(char *elements, int index, t_map *(map))
 {
+	if(index == 0 || elements == NULL)
+	{
+	elements[0] = '0';
+	elements[1] = '0';
+	elements[2] = '0';
+	elements[3] = '\0';
+	}
 	if (elements[0] > '1')
 		return (6);
 	if (elements[0] < '1' && (index == map -> height))
@@ -111,7 +118,7 @@ int	ft_coherence(char *line, int index, t_map *(map), char	*count_elements) //co
 		return (ft_checkwall(index , line, map));
 	if (ft_check_elements(count_elements, index, map) != 0)
 	{
-		//error = ft_checkwall(index , line, map);
+		free(line);
 		error = ft_check_elements(count_elements, index, map);
 		return (error);
 	}

@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 09:58:46 by zchagar           #+#    #+#             */
-/*   Updated: 2024/08/29 16:53:56 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/09/01 14:11:45 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,9 @@ int	ft_fill_map_tab(int fd, t_map *map)
 	{
 		line = get_next_line(fd);
 		if (ft_coherence(line, i, map, element_count) != 0)
+		{
 				return (ft_coherence(line, i, map, element_count));
+		}
 		while (j < (map -> width))
 		{
 			ft_count_elements(i, element_count, line[j]);
@@ -94,6 +96,7 @@ int	ft_fill_map_tab(int fd, t_map *map)
 		i++;
 		free(line);
 	}
+	free(element_count);
 	return (0);
 }
 
