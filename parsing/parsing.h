@@ -28,4 +28,5 @@ int	ft_check_wall_and_char(size_t roof, char *line, char *elements);
 int	ft_check_elements_end(char *elements);
 int	ft_check_top_bot(t_map *map);
 int	ft_print_error(int state, t_map *map, int fd);
-void	ft_free(t_map *map);
+void	ft_free_all(t_map *map);
+t_map	*ft_return_map ();
