@@ -49,7 +49,10 @@ int	ft_check_wall_and_char(size_t roof, char *line, char *elements)
 	while (i < roof - 1)
 	{
 		if (ft_notchar(line[i]) == -1)
+		{
+			free(line);
 			return (1);
+		}
 		ft_count_elements(line[i], elements);
 		i++;
 	}
@@ -89,7 +92,7 @@ int	ft_check_top_bot(t_map *map)
 			printf("%i\n",map -> height);
 			printf("%i\n",map -> width);
 			printf("%c\n",map -> tab[0][i]);
-			printf("%c\n",map -> tab[map -> height][i]);
+			printf("%c\n",map -> tab[map -> height - 1][i]);
 			return (3);
 		}
 		i++;
