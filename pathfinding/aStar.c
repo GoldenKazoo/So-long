@@ -24,7 +24,7 @@ int main()
 			r_node = &tab_node[(current -> x)][(current -> y) + 1];
 			if (in_closed_list(r_node) == -1)
 				add_list(r_node, open_list);
-			if (int_open_list(r_node) == 1)
+			if (in_open_list(r_node) == 1)
 			{
 				if (r_node -> p_cost < ft_abs(r_node -> x, depart -> x) + ft_abs(r_node -> y, depart -> y))
 				{

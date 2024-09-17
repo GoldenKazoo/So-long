@@ -24,6 +24,7 @@ typedef struct s_node
 	int		f_cost;
 	int		p_cost; //distance du depart
 	int		e_cost; //distance arrivee
+	struct s_node	*next;
 	struct s_node	*parent;
 } t_node;
 
