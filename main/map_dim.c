@@ -1,16 +1,17 @@
 #include "parsing.h"
-void	ft_free_all(t_map *map)
+
+void	ft_free_all(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	while (i < (map -> height))
+	while (i < (data -> map_height))
 	{
-		free(map -> tab[i]);
+		free(data -> tab[i]);
 		i++;
 	}
-	free(map -> tab);
-	free(map);
+	free(data -> tab);
+	free(data);
 }
 void	ft_free_gnl(fd)
 {
@@ -27,7 +28,7 @@ void	ft_free_gnl(fd)
 	}
 	free(line);
 }
-int	ft_map_dim(int fd, t_map *map)
+int	ft_map_dim(int fd, t_data *data)
 {
 	int		state;
 	int		height;
@@ -42,7 +43,10 @@ int	ft_map_dim(int fd, t_map *map)
 	elements[3] = '\0';
 	line = get_next_line(fd);
 	if (!line)
+	{
+		free (elements);
 		return (-1);
+	}
 	roof = ft_strlen(line);
 	state = ft_check_wall_and_char(roof, line, elements);
 	if (state != 0)
@@ -58,7 +62,6 @@ int	ft_map_dim(int fd, t_map *map)
 		state = ft_check_wall_and_char(roof, line, elements);
 		if (state != 0)
 		{
-			free(line);
 			free(elements);
 			return (state);
 		}
@@ -67,29 +70,29 @@ int	ft_map_dim(int fd, t_map *map)
 	}
 	state = ft_check_elements_end(elements);
 	if (state != 0)
-		{
+	{
 		free(elements);
 		return (state);
-		}
-	map -> height = height;
-	map -> width = roof - 1;
+	}
+	data -> map_height = height;
+	data -> map_width = roof - 1;
 	free(elements);
 	return (0);
 }
-void	ft_map_to_tab (t_map *map)
+void	ft_map_to_tab (t_data *data)
 {
 	int	i;
 
 	i = 0;
-	map -> tab = malloc (sizeof(char *) * ((map -> height)));
-	while (i < (map -> height))
+	data -> tab = malloc (sizeof(char *) * ((data -> map_height)));
+	while (i < (data -> map_height))
 	{
-		map -> tab[i] = malloc(sizeof(char) * (map -> width + 1));
+		data -> tab[i] = malloc(sizeof(char) * (data -> map_width + 1));
 		i++;
 	}
 }
 
-void	ft_fill_map_tab(int fd, t_map *map)
+void	ft_fill_map_tab(int fd, t_data *data)
 {
 	int		i;
 	int		j;
@@ -97,15 +100,15 @@ void	ft_fill_map_tab(int fd, t_map *map)
 
 	i = 0;
 	j = 0;
-	while (i < (map -> height))
+	while (i < (data -> map_height))
 	{
 		line = get_next_line(fd);
-		while (j < (map -> width))
+		while (j < (data -> map_width))
 		{
-			map->tab[i][j] = line[j];
+			data->tab[i][j] = line[j];
 			j++;
 		}
-		map -> tab[i][j] = '\0';
+		data -> tab[i][j] = '\0';
 		j = 0;
 		i++;
 		free(line);
@@ -113,61 +116,60 @@ void	ft_fill_map_tab(int fd, t_map *map)
 	get_next_line(fd);
 }
 
-void	ft_print_tab(t_map *map)
+void	ft_print_tab(t_data *data)
 {
 	char	s;
 	printf("--------------\n");
-	for(int i = 0; i < map -> height; i++)
+	for(int i = 0; i < data -> map_height; i++)
 	{
-		for(int j = 0; j < map -> width; j++)
+		for(int j = 0; j < data -> map_width; j++)
 		{
-			s = (map -> tab[i][j]);
+			s = (data -> tab[i][j]);
 			printf("%c", s);
 		}
 		printf("%c", '\n');
 	}
 	printf("--------------\n");
-	printf(" Longueur : %i\n", map -> height);
-	printf(" Largeur : %i\n", map -> width);
+	printf(" Longueur : %i\n", data -> map_height);
+	printf(" Largeur : %i\n", data -> map_width);
 	printf("--------------\n");
 }
-t_map	*ft_return_map ()
+t_data	*ft_return_map (t_data *data)
 {
-	t_map	*map;
 	int		fd;
 	int		state;
 
-	map = malloc(sizeof(t_map));
-	if (!map)
+	data = malloc(sizeof(t_data));
+	if (!data)
 		return (NULL);
-	fd = open("valide_map.ber", O_RDONLY);
-	state = ft_map_dim(fd, map);
+	fd = open("map/valide_map.ber", O_RDONLY);
+	state = ft_map_dim(fd, data);
 	if(state != 0)
 	{
 		ft_free_gnl(fd);
-		ft_print_error(state, map, fd);
+		ft_print_error(state, data, fd);
 		return (NULL);
 	}
-	fd = open("valide_map.ber", O_RDONLY);
-	ft_map_to_tab(map); //malloc le tableau
-	if (!(map -> tab))
+	fd = open("map/valide_map.ber", O_RDONLY);
+	ft_map_to_tab(data); //malloc le tableau
+	if (!(data -> tab))
 	{
 		ft_free_gnl(fd);
-		ft_free_all(map);
+		ft_free_all(data);
 		return (NULL);
 	}
-	ft_fill_map_tab(fd, map);
+	ft_fill_map_tab(fd, data);
 
-	state = ft_check_top_bot(map);
+	state = ft_check_top_bot(data);
 	if(state != 0)
 	{
 		ft_free_gnl(fd);
-		ft_print_error(state, map, fd);
-		ft_free_all(map);
+		ft_print_error(state, data, fd);
+		ft_free_all(data);
 		return (NULL);
 	}
 	ft_free_gnl(fd);
-	ft_print_tab(map); //affiche le tableau
+	// ft_print_tab(data); //affiche le tableau
 	close(fd);
-	return (map);
+	return (data);
 }
