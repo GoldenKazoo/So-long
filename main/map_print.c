@@ -7,7 +7,11 @@
 void	ft_print_map_aux(t_data *data, int x, int y, int i, int j)
 {
 	if (data -> tab[x][y] == 'P')
+	{
 		mlx_put_image_to_window(data -> mlx, data -> win, data -> player_tile,i,j);
+		data -> player_posX = x;
+		data -> player_posY = y;
+	}
 	if (data -> tab[x][y] == 'E')
 		mlx_put_image_to_window(data -> mlx, data -> win, data -> exit_tile,i,j);
 	if (data -> tab[x][y] == 'C')
@@ -28,13 +32,14 @@ void    ft_print_map(t_data *data)
 	x = 0;
 	y = 0;
 
-	while(x < data -> map_height)
+	while(x < data -> map_width)
 	{
 		j = 0;
 		y = 0;
-		while(y < data -> map_width)
+		while(y < data -> map_height)
 		{
-			ft_print_map_aux(data, x, y, i, j);
+			ft_print_map_aux(data, y, x, i, j);
+			sleep(1);
 			j = j + 32;
 			y++;
 		}

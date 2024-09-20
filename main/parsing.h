@@ -15,6 +15,8 @@ typedef struct s_data
 	int		map_width;
 	int		map_height;
 	int		tile_dim;
+	int		player_posX;
+	int		player_posY;
 	void	*empty_tile;
 	void	*wall_tile;
 	void	*player_tile;
