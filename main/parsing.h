@@ -49,12 +49,14 @@ typedef struct s_data
 // {
 // 	t_node	*head;
 // } t_list;
+int	get_posX (t_data *data);
+int	get_posY (t_data *data);
 void	ft_free_all(t_data *data);
 t_data	*ft_return_map ();
 int	ft_coherence(char *line, int index, t_data *data, char	*count_elements);
 void	ft_count_elements(char c, char *elements);
 void	ft_printerror(int error);
-
+int	ft_key_hooks(t_data *data);
 void    ft_print_map(t_data *data);
 void	ft_print_tab(t_data *data);
 int ft_give_dim(t_data *data, int fd);
