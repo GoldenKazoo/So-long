@@ -5,20 +5,57 @@ t_data	*ft_data_init(t_data *data)
 {
 	data = ft_return_map(data);
 	data -> mlx = mlx_init();
-	data -> win = mlx_new_window(data -> mlx, 32 * data -> map_width,
-	32 * data -> map_height, "So long");
-	data -> tile_dim = 32;
+	data -> win = mlx_new_window(data -> mlx, 64 * data -> map_width,
+	64 * data -> map_height, "So long");
+	data -> tile_dim = 64;
 	ft_print_tab(data);
 	data -> empty_tile = mlx_xpm_file_to_image(data -> mlx,
-	"xpm/Grass.xpm", &(data -> tile_dim), &(data -> tile_dim));
+	"xpm2/Grass.xpm", &(data -> tile_dim), &(data -> tile_dim));
+	if (!data -> empty_tile)
+{
+    // Gestion de l'erreur, libérer correctement et retourner NULL
+    ft_free_all(data);
+    return NULL;
+}
+
+
 	data -> player_tile = mlx_xpm_file_to_image(data -> mlx,
-	"xpm/Moumouton.xpm", &(data -> tile_dim), &(data -> tile_dim));
+	"xpm2/Player1.xpm", &(data -> tile_dim), &(data -> tile_dim));
+	if (!data -> empty_tile)
+{
+    // Gestion de l'erreur, libérer correctement et retourner NULL
+    ft_free_all(data);
+    return NULL;
+}
+
+
 	data -> exit_tile = mlx_xpm_file_to_image(data -> mlx,
-	"xpm/Grass.xpm", &(data -> tile_dim), &(data -> tile_dim));
+	"xpm2/Exit.xpm", &(data -> tile_dim), &(data -> tile_dim));
+	if (!data -> empty_tile)
+{
+    // Gestion de l'erreur, libérer correctement et retourner NULL
+    ft_free_all(data);
+    return NULL;
+}
+
+
 	data -> wall_tile = mlx_xpm_file_to_image(data -> mlx,
-	"xpm/Grass.xpm", &(data -> tile_dim), &(data -> tile_dim));
+	"xpm2/Wall.xpm", &(data -> tile_dim), &(data -> tile_dim));
+	if (!data -> empty_tile)
+	{
+    // Gestion de l'erreur, libérer correctement et retourner NULL
+    ft_free_all(data);
+    return NULL;
+	}
 	data -> obj_tile = mlx_xpm_file_to_image(data -> mlx,
-	"xpm/Grass.xpm", &(data -> tile_dim), &(data -> tile_dim));
+	"xpm2/Item.xpm", &(data -> tile_dim), &(data -> tile_dim));
+
+	if (!data -> empty_tile)
+{
+    // Gestion de l'erreur, libérer correctement et retourner NULL
+    ft_free_all(data);
+    return NULL;
+}
 	data -> player_posX = get_posX(data);
 	data -> player_posY = get_posX(data);
 	if (!data)
@@ -60,7 +97,7 @@ int	main()
 	}
 	if (i == 1)
 	{
-		// ft_print_map(data);
+		ft_print_map(data);
 		i++;
 	}
 	ft_key_hooks(data);

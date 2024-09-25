@@ -56,18 +56,18 @@ int	*ft_moove_up_down(int keycode, t_data *data)
 		data -> tab[data -> player_posX][data -> player_posY] = 'P';
 		data -> tab[data -> player_posX][data -> player_posY] = '0';
 		mlx_put_image_to_window(data -> mlx, data -> win,
-		 (data -> player_tile),32 * (data -> player_posX + 1), 32 * (data -> player_posY));
+		 (data -> player_tile),64 * (data -> player_posX + 1), 64 * (data -> player_posY));
 		mlx_put_image_to_window(data -> mlx, data -> win,
-		 (data -> empty_tile),32 * (data -> player_posX), 32 * (data -> player_posY));
+		 (data -> empty_tile),64 * (data -> player_posX), 64 * (data -> player_posY));
 	}
 	if (keycode == XK_S ||keycode == XK_s)
 	{
 		data -> tab[data -> player_posX][data -> player_posY] = 'P';
 		data -> tab[data -> player_posX][data -> player_posY] = '0';
 		mlx_put_image_to_window(data -> mlx, data -> win,
-		 (data -> player_tile),32 * (data -> player_posX + 1), 32 * (data -> player_posY));
+		 (data -> player_tile),64 * (data -> player_posX + 1), 64 * (data -> player_posY));
 		mlx_put_image_to_window(data -> mlx, data -> win,
-		 (data -> empty_tile),32 * (data -> player_posX), 32 * (data -> player_posY));
+		 (data -> empty_tile),64 * (data -> player_posX), 64 * (data -> player_posY));
 	}
 	return(0);
 }
@@ -77,25 +77,25 @@ t_data	*ft_moove_right_left(int keycode, t_data *data)
 	if (keycode == XK_A ||keycode == XK_a)
 	{
 		data -> player_posX = get_posX(data);
-		data -> player_posY = get_posX(data) - 1;
+		data -> player_posY = get_posY(data) - 1;
 		data -> tab[data -> player_posX][data -> player_posY] = '0';
 		data -> tab[data -> player_posX][data -> player_posY] = 'P';
 		mlx_put_image_to_window(data -> mlx, data -> win,
-		 (data -> player_tile),32 * (data -> player_posX + 1), 32 * (data -> player_posY));
+		 (data -> player_tile),64 * (data -> player_posX + 1), 64 * (data -> player_posY));
 		mlx_put_image_to_window(data -> mlx, data -> win,
-		 (data -> empty_tile),32 * (data -> player_posX), 32 * (data -> player_posY));
+		 (data -> empty_tile),64 * (data -> player_posX), 64 * (data -> player_posY));
 
 	}
 	if (keycode == XK_D ||keycode == XK_d)
 	{
 		data -> player_posX = data -> player_posX + 1;
 		data -> player_posY = data -> player_posY;
-		data -> tab[data -> player_posX - 1][data -> player_posY] = '0';
-		data -> tab[data -> player_posX][data -> player_posY] = 'P';
+		data -> tab[data -> player_posY - 1][data -> player_posX] = '0';
+		data -> tab[data -> player_posY][data -> player_posX] = 'P';
 		mlx_put_image_to_window(data -> mlx, data -> win,
-		 (data -> player_tile),32 * (data -> player_posX), 32 * (data -> player_posY));
+		 (data -> player_tile),64 * (data -> player_posX), 64 * (data -> player_posY));
 		mlx_put_image_to_window(data -> mlx, data -> win,
-		 (data -> empty_tile),32 * (data -> player_posX), 32 * (data -> player_posY));
+		 (data -> empty_tile),64 * (data -> player_posX), 64 * (data -> player_posY));
 
 	}
 	return data;
