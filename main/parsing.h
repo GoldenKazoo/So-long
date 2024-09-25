@@ -18,6 +18,7 @@ typedef struct s_data
 	int		tile_dim;
 	int		player_posX;
 	int		player_posY;
+	int		coups;
 	void	*empty_tile;
 	void	*wall_tile;
 	void	*player_tile;

@@ -172,8 +172,8 @@ int	ft_print_error(int state, t_data *data, int fd)
 		exit(EXIT_FAILURE);
 	}
 
-	printf("Height: %i\n", data -> map_height);
-	printf("Width: %i\n", data -> map_width);
+	// printf("Height: %i\n", data -> map_height);
+	// printf("Width: %i\n", data -> map_width);
 
 	close(fd);
 	return (0);
@@ -183,11 +183,9 @@ void	ft_map_to_tab (t_data *data)
 	int	i;
 
 	i = 0;
-			printf("OK");
 	data -> tab = malloc (sizeof(char *) * ((data -> map_height)));
 	while (i < (data -> map_height))
 	{
-		printf("OK");
 		data -> tab[i] = malloc(sizeof(char) * (data -> map_width + 1));
 		i++;
 	}

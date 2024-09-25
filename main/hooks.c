@@ -110,7 +110,7 @@ void	ft_moove_right_left(int keycode, t_data *data)
 			data -> player_posY = get_posY(data);
 			mlx_put_image_to_window(data -> mlx, data -> win,
 			 (data -> player_tile),64 * (data -> player_posY), 64 * (data -> player_posX));
-			printf("PosX:%i\n", data -> player_posY);
+			// printf("PosX:%i\n", data -> player_posY);
 		}
 
 	}
@@ -125,7 +125,7 @@ void	ft_moove_right_left(int keycode, t_data *data)
 		}
 		if (data -> tab[(data -> player_posX)][(data -> player_posY) + 1] != 'E')
 		{
-		printf("Next :%c\n", data -> tab[(data -> player_posX)][(data -> player_posY) + 1]);
+		// printf("Next :%c\n", data -> tab[(data -> player_posX)][(data -> player_posY) + 1]);
 		data -> player_posY = data -> player_posY;
 		data -> tab[data -> player_posX][data -> player_posY] = '0';
 		mlx_put_image_to_window(data -> mlx, data -> win,
@@ -134,18 +134,14 @@ void	ft_moove_right_left(int keycode, t_data *data)
 		data -> player_posY = get_posY(data);
 		mlx_put_image_to_window(data -> mlx, data -> win,
 		 (data -> player_tile),64 * (data -> player_posY), 64 * (data -> player_posX));
-		printf("PosX:%i\n", data -> player_posY);
+		// printf("PosX:%i\n", data -> player_posY);
 		}
 	}
 }
 int	inputs(int keycode, t_data *data)
 {
-	int i;
-
-	i = 0;
 	if(keycode == XK_Escape)
 	{
-	printf("%s\n", "SKILL ISSUE");
 	mlx_destroy_image(data -> mlx, data -> player_tile);
 	mlx_destroy_image(data -> mlx, data -> empty_tile);
 	mlx_destroy_image(data -> mlx, data -> wall_tile);
@@ -154,28 +150,31 @@ int	inputs(int keycode, t_data *data)
 	mlx_destroy_window(data -> mlx, data -> win);
 	mlx_destroy_display(data -> mlx);
 	free(data-> mlx);
-	ft_print_tab(data);
+	// ft_print_tab(data);
 	ft_free_all(data);
 		exit(EXIT_SUCCESS);
 	}
 	if(keycode == XK_W || keycode == XK_w || keycode == XK_S || keycode == XK_s)
 	{
 		ft_moove_up_down(keycode, data);
-		ft_print_tab(data);
+		// ft_print_tab(data);
+
 }
 	if(keycode == XK_A || keycode == XK_a || keycode == XK_D || keycode == XK_d)
 	{
 		ft_moove_right_left(keycode, data);
-		ft_print_tab(data);
+		// ft_print_tab(data);
+
 	}
-	i++;
-	printf("Player X:%i\n", data -> player_posX);
-	printf("Player Y:%i\n", data -> player_posY);
-	printf("%c\n", data -> map_elements[2]);
+	data -> coups = data -> coups + 1;
+	printf("Coups :%i\n", data -> coups);
+	// printf("Player X:%i\n", data -> player_posX);
+	// printf("Player Y:%i\n", data -> player_posY);
 	return (0);
 }
 int	ft_key_hooks(t_data *data)
 {
+	data -> coups = -1;
 	mlx_key_hook(data -> win, inputs, data);
 	return(0);
 }

@@ -8,7 +8,7 @@ t_data	*ft_data_init(t_data *data)
 	data -> win = mlx_new_window(data -> mlx, 64 * data -> map_width,
 	64 * data -> map_height, "So long");
 	data -> tile_dim = 64;
-	ft_print_tab(data);
+	// ft_print_tab(data);
 	data -> empty_tile = mlx_xpm_file_to_image(data -> mlx,
 	"xpm/Grass.xpm", &(data -> tile_dim), &(data -> tile_dim));
 	if (!data -> empty_tile)
@@ -95,7 +95,6 @@ int	main()
 	data = ft_data_init(data);
 	data -> player_posX = get_posX(data);
 	data -> player_posY = get_posY(data);
-	printf("%c\n", data -> map_elements[2]);
 	if(!data)
 	{
 		return (0);
