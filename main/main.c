@@ -85,12 +85,17 @@ int	main()
 {
 	t_data *data;
 	int		i;
+	int		fd;
 
+	fd = open("map/valide_map.ber", O_RDONLY);
 	i = 1;
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (0);
 	data = ft_data_init(data);
+	data -> player_posX = get_posX(data);
+	data -> player_posY = get_posY(data);
+	printf("%c\n", data -> map_elements[2]);
 	if(!data)
 	{
 		return (0);

@@ -106,14 +106,14 @@ int	ft_print_error(int state, t_data *data, int fd)
 	{
 		printf("Error can't open map\n");
 		free(data);
-		return (1);
+		exit(EXIT_FAILURE);
 	}
 	if (state == 1) //ERROR 1
 	{
 		printf("Error char illegal\n");
 		free(data);
 		close(fd);
-		return (1);
+		exit(EXIT_FAILURE);
 	}
 
 	if (state == 2) //ERROR 2
@@ -121,7 +121,7 @@ int	ft_print_error(int state, t_data *data, int fd)
 		printf("Error reading map dimensions.\n");
 		free(data);
 		close(fd);
-		return (1);
+		exit(EXIT_FAILURE);
 	}
 
 	if (state == 3) //ERROR 3
@@ -129,7 +129,7 @@ int	ft_print_error(int state, t_data *data, int fd)
 		printf("Error no wall around.\n");
 		free(data);
 		close(fd);
-		return (1);
+		exit(EXIT_FAILURE);
 	}
 
 	if (state == 4) //ERROR 4
@@ -137,7 +137,7 @@ int	ft_print_error(int state, t_data *data, int fd)
 		printf("Error no exit.\n");
 		free(data);
 		close(fd);
-		return (1);
+		exit(EXIT_FAILURE);
 	}
 
 	if (state == 5) //ERROR 5
@@ -145,7 +145,7 @@ int	ft_print_error(int state, t_data *data, int fd)
 		printf("Error too much exits.\n");
 		free(data);
 		close(fd);
-		return (1);
+		exit(EXIT_FAILURE);
 	}
 
 	if (state == 6) //ERROR 6
@@ -153,7 +153,7 @@ int	ft_print_error(int state, t_data *data, int fd)
 		printf("Error no player.\n");
 		free(data);
 		close(fd);
-		return (1);
+		exit(EXIT_FAILURE);
 	}
 
 	if (state == 7) //ERROR 7
@@ -161,7 +161,7 @@ int	ft_print_error(int state, t_data *data, int fd)
 		printf("Error too much player.\n");
 		free(data);
 		close(fd);
-		return (1);
+		exit(EXIT_FAILURE);
 	}
 
 	if (state == 8) //ERROR 8
@@ -169,7 +169,7 @@ int	ft_print_error(int state, t_data *data, int fd)
 		printf("Error not enough collectible.\n");
 		free(data);
 		close(fd);
-		return (1);
+		exit(EXIT_FAILURE);
 	}
 
 	printf("Height: %i\n", data -> map_height);
