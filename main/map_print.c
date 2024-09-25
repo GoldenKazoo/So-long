@@ -30,17 +30,17 @@ void    ft_print_map(t_data *data)
 	x = 0;
 	y = 0;
 
-	while(x < data -> map_width)
+	while(x < data -> map_height)
 	{
-		j = 0;
+		i = 0;
 		y = 0;
-		while(y < data -> map_height)
+		while(y < data -> map_width)
 		{
-			ft_print_map_aux(data, y, x, i, j);
-			j = j + 64;
+			ft_print_map_aux(data, x, y, i, j);
+			i = i + 64;
 			y++;
 		}
-		i = i + 64;
+		j = j + 64;
 		x++;
 	}
 }

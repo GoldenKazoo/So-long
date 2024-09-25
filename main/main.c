@@ -10,7 +10,7 @@ t_data	*ft_data_init(t_data *data)
 	data -> tile_dim = 64;
 	ft_print_tab(data);
 	data -> empty_tile = mlx_xpm_file_to_image(data -> mlx,
-	"xpm2/Grass.xpm", &(data -> tile_dim), &(data -> tile_dim));
+	"xpm/Grass.xpm", &(data -> tile_dim), &(data -> tile_dim));
 	if (!data -> empty_tile)
 {
     // Gestion de l'erreur, libérer correctement et retourner NULL
@@ -20,7 +20,7 @@ t_data	*ft_data_init(t_data *data)
 
 
 	data -> player_tile = mlx_xpm_file_to_image(data -> mlx,
-	"xpm2/Player1.xpm", &(data -> tile_dim), &(data -> tile_dim));
+	"xpm/Player1.xpm", &(data -> tile_dim), &(data -> tile_dim));
 	if (!data -> empty_tile)
 {
     // Gestion de l'erreur, libérer correctement et retourner NULL
@@ -30,7 +30,7 @@ t_data	*ft_data_init(t_data *data)
 
 
 	data -> exit_tile = mlx_xpm_file_to_image(data -> mlx,
-	"xpm2/Exit.xpm", &(data -> tile_dim), &(data -> tile_dim));
+	"xpm/Exit.xpm", &(data -> tile_dim), &(data -> tile_dim));
 	if (!data -> empty_tile)
 {
     // Gestion de l'erreur, libérer correctement et retourner NULL
@@ -40,7 +40,7 @@ t_data	*ft_data_init(t_data *data)
 
 
 	data -> wall_tile = mlx_xpm_file_to_image(data -> mlx,
-	"xpm2/Wall.xpm", &(data -> tile_dim), &(data -> tile_dim));
+	"xpm/Wall.xpm", &(data -> tile_dim), &(data -> tile_dim));
 	if (!data -> empty_tile)
 	{
     // Gestion de l'erreur, libérer correctement et retourner NULL
@@ -48,7 +48,7 @@ t_data	*ft_data_init(t_data *data)
     return NULL;
 	}
 	data -> obj_tile = mlx_xpm_file_to_image(data -> mlx,
-	"xpm2/Item.xpm", &(data -> tile_dim), &(data -> tile_dim));
+	"xpm/Item.xpm", &(data -> tile_dim), &(data -> tile_dim));
 
 	if (!data -> empty_tile)
 {
@@ -84,12 +84,12 @@ t_data	*ft_data_init_aux(t_data *data)
 int	main()
 {
 	t_data *data;
-	static int		i;
+	int		i;
 
 	i = 1;
 	data = malloc(sizeof(t_data));
 	if (!data)
-		return(0);
+		return (0);
 	data = ft_data_init(data);
 	if(!data)
 	{
@@ -98,7 +98,6 @@ int	main()
 	if (i == 1)
 	{
 		ft_print_map(data);
-		i++;
 	}
 	ft_key_hooks(data);
 	mlx_loop(data -> mlx);

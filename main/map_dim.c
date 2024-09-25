@@ -139,9 +139,6 @@ t_data	*ft_return_map (t_data *data)
 	int		fd;
 	int		state;
 
-	data = malloc(sizeof(t_data));
-	if (!data)
-		return (NULL);
 	fd = open("map/valide_map.ber", O_RDONLY);
 	state = ft_map_dim(fd, data);
 	if(state != 0)
