@@ -1,6 +1,47 @@
 #include "parsing.h"
 #include "minilibx-linux/mlx.h"
+void	ft_data_init_img1(t_data *data)
+{
+	data -> empty_tile = mlx_xpm_file_to_image(data -> mlx,
+	"xpm/Grass.xpm", &(data -> tile_dim), &(data -> tile_dim));
+	if (!data -> empty_tile)
+		{
+			ft_free_all(data);
+			exit(EXIT_FAILURE);
+		}
+	data -> player_tile = mlx_xpm_file_to_image(data -> mlx,
+	"xpm/Player1.xpm", &(data -> tile_dim), &(data -> tile_dim));
+	if (!data -> empty_tile)
+	{
+		ft_free_all(data);
+		exit(EXIT_FAILURE);
+	}
+	data -> exit_tile = mlx_xpm_file_to_image(data -> mlx,
+	"xpm/Exit.xpm", &(data -> tile_dim), &(data -> tile_dim));
+	if (!data -> empty_tile)
+	{
+		ft_free_all(data);
+		exit(EXIT_FAILURE);
+	}
+}
+void	ft_data_init_img2(t_data *data)
+{
+	data -> wall_tile = mlx_xpm_file_to_image(data -> mlx,
+	"xpm/Wall.xpm", &(data -> tile_dim), &(data -> tile_dim));
+	if (!data -> empty_tile)
+	{
+		ft_free_all(data);
+		exit(EXIT_FAILURE);
+	}
+	data -> obj_tile = mlx_xpm_file_to_image(data -> mlx,
+	"xpm/Item.xpm", &(data -> tile_dim), &(data -> tile_dim));
 
+	if (!data -> empty_tile)
+	{
+		ft_free_all(data);
+		exit(EXIT_FAILURE);
+	}
+}
 t_data	*ft_data_init(t_data *data)
 {
 	data = ft_return_map(data);
@@ -8,54 +49,8 @@ t_data	*ft_data_init(t_data *data)
 	data -> win = mlx_new_window(data -> mlx, 64 * data -> map_width,
 	64 * data -> map_height, "So long");
 	data -> tile_dim = 64;
-	// ft_print_tab(data);
-	data -> empty_tile = mlx_xpm_file_to_image(data -> mlx,
-	"xpm/Grass.xpm", &(data -> tile_dim), &(data -> tile_dim));
-	if (!data -> empty_tile)
-{
-    // Gestion de l'erreur, libérer correctement et retourner NULL
-    ft_free_all(data);
-    return NULL;
-}
-
-
-	data -> player_tile = mlx_xpm_file_to_image(data -> mlx,
-	"xpm/Player1.xpm", &(data -> tile_dim), &(data -> tile_dim));
-	if (!data -> empty_tile)
-{
-    // Gestion de l'erreur, libérer correctement et retourner NULL
-    ft_free_all(data);
-    return NULL;
-}
-
-
-	data -> exit_tile = mlx_xpm_file_to_image(data -> mlx,
-	"xpm/Exit.xpm", &(data -> tile_dim), &(data -> tile_dim));
-	if (!data -> empty_tile)
-{
-    // Gestion de l'erreur, libérer correctement et retourner NULL
-    ft_free_all(data);
-    return NULL;
-}
-
-
-	data -> wall_tile = mlx_xpm_file_to_image(data -> mlx,
-	"xpm/Wall.xpm", &(data -> tile_dim), &(data -> tile_dim));
-	if (!data -> empty_tile)
-	{
-    // Gestion de l'erreur, libérer correctement et retourner NULL
-    ft_free_all(data);
-    return NULL;
-	}
-	data -> obj_tile = mlx_xpm_file_to_image(data -> mlx,
-	"xpm/Item.xpm", &(data -> tile_dim), &(data -> tile_dim));
-
-	if (!data -> empty_tile)
-{
-    // Gestion de l'erreur, libérer correctement et retourner NULL
-    ft_free_all(data);
-    return NULL;
-}
+	ft_data_init_img1(data);
+	ft_data_init_img2(data);
 	data -> player_posX = get_posX(data);
 	data -> player_posY = get_posX(data);
 	if (!data)
@@ -81,13 +76,14 @@ t_data	*ft_data_init_aux(t_data *data)
 		ft_free_all(data);
 	return (data);
 }
-int	main()
+int	main(int argc, char **argv)
 {
 	t_data *data;
 	int		i;
 	int		fd;
-
-	fd = open("map/valide_map.ber", O_RDONLY);
+	if (argc != 2)
+		return (0);
+	fd = open(argv[1], O_RDONLY);
 	i = 1;
 	data = malloc(sizeof(t_data));
 	if (!data)
