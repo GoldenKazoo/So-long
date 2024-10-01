@@ -167,7 +167,7 @@ int	inputs(int keycode, t_data *data)
 
 	}
 	data -> coups = data -> coups + 1;
-	printf("Coups :%i\n", data -> coups);
+	printf("Coups : %i\n", data -> coups);
 	// printf("Player X:%i\n", data -> player_posX);
 	// printf("Player Y:%i\n", data -> player_posY);
 	return (0);

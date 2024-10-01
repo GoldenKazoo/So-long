@@ -66,6 +66,41 @@ int	ft_check_elements(t_data *data)
 		return (8);
 	return (0);
 }
+void	ft_map_to_tab (t_data *data)
+{
+	int	i;
+
+	i = 0;
+	data -> tab = malloc (sizeof(char *) * ((data -> map_height)));
+	while (i < (data -> map_height))
+	{
+		data -> tab[i] = malloc(sizeof(char) * (data -> map_width + 1));
+		i++;
+	}
+}
+
+void	ft_fill_map_tab(t_data *data, char *longline)
+{
+	int		i;
+	int		j;
+	int		k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	while (i < (data -> map_height))
+	{
+		while (j < (data -> map_width) + 1)
+		{
+			data->tab[i][j] = longline[k];
+			k++;
+			j++;
+		}
+		data -> tab[i][j] = '\0';
+		j = 0;
+		i++;
+	}
+}
 int	parsing(t_data *data, int fd)
 {
 	int		state;
@@ -73,10 +108,12 @@ int	parsing(t_data *data, int fd)
 	int		height;
 	char	*line1;
 	char	*line2;
+	char	*long_line;
 
 	state = 0;
 	height = 0;
 	line1 = get_next_line(fd);
+	long_line = line1;
 	if (!line1)
 		exit(EXIT_FAILURE);
 	roof = ft_strlen(line1);
@@ -89,6 +126,8 @@ int	parsing(t_data *data, int fd)
 		line2 = line1;
 		if (ft_strlen(line1) != roof)
 			return (2);
+		if (line2 != NULL && height != 0)
+			long_line = ft_strjoin(long_line, line1);
 		line1 = get_next_line(fd);
 		height++;
 	}
@@ -98,6 +137,8 @@ int	parsing(t_data *data, int fd)
 	state = ft_check_elements(data);
 	data -> map_height = height;
 	data -> map_width = roof - 1;
+	ft_map_to_tab(data);
+	ft_fill_map_tab(data, long_line);
 	return (state);
 }
 int	ft_print_error(int state, t_data *data, int fd)
@@ -174,45 +215,7 @@ int	ft_print_error(int state, t_data *data, int fd)
 
 	// printf("Height: %i\n", data -> map_height);
 	// printf("Width: %i\n", data -> map_width);
-
-	close(fd);
 	return (0);
-}
-void	ft_map_to_tab (t_data *data)
-{
-	int	i;
-
-	i = 0;
-	data -> tab = malloc (sizeof(char *) * ((data -> map_height)));
-	while (i < (data -> map_height))
-	{
-		data -> tab[i] = malloc(sizeof(char) * (data -> map_width + 1));
-		i++;
-	}
-}
-
-void	ft_fill_map_tab(int fd, t_data *data)
-{
-	int		i;
-	int		j;
-	char	*line;
-
-	i = 0;
-	j = 0;
-	while (i < (data -> map_height))
-	{
-		line = get_next_line(fd);
-		while (j < (data -> map_width))
-		{
-			data->tab[i][j] = line[j];
-			j++;
-		}
-		data -> tab[i][j] = '\0';
-		j = 0;
-		i++;
-		free(line);
-	}
-	get_next_line(fd);
 }
 
 void	ft_print_tab(t_data *data)
@@ -238,12 +241,10 @@ void	ft_print_tab(t_data *data)
 	printf("--------------\n");
 }
 
-t_data *ft_return_map(t_data *data)
+t_data *ft_return_map(t_data *data, int fd)
 {
 	int	state;
-	int	fd;
 
-	fd = open("map/valide_map.ber", O_RDONLY);
 	data -> map_elements = malloc(sizeof(char) * 4);
 	data -> map_elements[0] = '0';
 	data -> map_elements[1] = '0';
@@ -251,10 +252,6 @@ t_data *ft_return_map(t_data *data)
 	data -> map_elements[3] = '\0';
 	state = parsing(data, fd);
 	ft_print_error(state, data, fd);
-	close(fd);
-	fd = open("map/valide_map.ber", O_RDONLY);
-	ft_map_to_tab(data);
-	ft_fill_map_tab(fd, data);
 	close(fd);
 	return (data);
 }
