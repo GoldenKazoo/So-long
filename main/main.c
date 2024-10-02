@@ -55,6 +55,7 @@ int	main(int argc, char **argv)
 {
 	t_data *data;
 	int		i;
+	int		booleen;
 	int		fd;
 
 	if (argc != 2)
@@ -74,8 +75,11 @@ int	main(int argc, char **argv)
 	printf("%i\n", data -> player_tile -> bpp);
 	data -> player_posX = get_posX(data);
 	data -> player_posY = get_posY(data);
+	booleen = check_map_accessibility(data);
+	printf("Map valide ? :%i\n", booleen);
 	if(!data)
 	{
+		ft_paint_map(data);
 		return (0);
 	}
 	ft_print_tab(data);

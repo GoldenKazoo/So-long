@@ -55,3 +55,4 @@ int	ft_print_error(int state, t_data *data, int fd);
 void	ft_free_all(t_data *data);
 void	ft_paint_map(t_data *data);
 t_data	*ft_return_map (t_data *data, int fd);
+int	check_map_accessibility(t_data *data);
