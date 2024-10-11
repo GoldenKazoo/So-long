@@ -22,7 +22,7 @@ void	ft_moove_up(int keycode, t_data *data)
 		if (data -> tab[(data -> p_pos_x) - 1][(data -> p_pos_y)] == 'C')
 			data -> map_elements[2] = data -> map_elements[2] - 1;
 		if (data -> tab[(data -> p_pos_x) - 1][(data -> p_pos_y)]
-		== 'E' && (data -> map_elements[2] == '0'))
+		== 'E' && (data -> map_elements[2] == 0))
 		{
 			ft_close_window(data);
 			exit(EXIT_FAILURE);
@@ -49,7 +49,7 @@ void	ft_moove_down(int keycode, t_data *data)
 			data -> map_elements[2] = data -> map_elements[2] - 1;
 		}
 		if (data -> tab[(data -> p_pos_x) + 1][(data -> p_pos_y)] == 'E' &&
-			(data -> map_elements[2] == '0'))
+			(data -> map_elements[2] == 0))
 		{
 			ft_close_window(data);
 			exit(EXIT_FAILURE);
@@ -74,7 +74,7 @@ void	ft_moove_right(int keycode, t_data *data)
 		if (data -> tab[(data -> p_pos_x)][(data -> p_pos_y) - 1] == 'C')
 			data -> map_elements[2] = data -> map_elements[2] - 1;
 		if (data -> tab[(data -> p_pos_x)][(data -> p_pos_y) - 1] == 'E'
-			&& (data -> map_elements[2] == '0'))
+			&& (data -> map_elements[2] == 0))
 		{
 			ft_close_window(data);
 			exit(EXIT_FAILURE);
@@ -96,7 +96,7 @@ void	ft_moove_left(int keycode, t_data *data)
 		&& data -> tab[(data -> p_pos_x)][(data -> p_pos_y) + 1] != '1')
 	{
 		if (data -> tab[(data -> p_pos_x)][(data -> p_pos_y) + 1] == 'E'
-			&& (data -> map_elements[2] == '0'))
+			&& (data -> map_elements[2] == 0))
 		{
 			ft_close_window(data);
 			exit(EXIT_FAILURE);

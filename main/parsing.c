@@ -97,11 +97,10 @@ t_data	*ft_return_map(t_data *data, int fd)
 {
 	int	state;
 
-	data -> map_elements = malloc(sizeof(char) * 4);
-	data -> map_elements[0] = '0';
-	data -> map_elements[1] = '0';
-	data -> map_elements[2] = '0';
-	data -> map_elements[3] = '\0';
+	data -> map_elements = malloc(sizeof(int) * 3);
+	data -> map_elements[0] = 0;
+	data -> map_elements[1] = 0;
+	data -> map_elements[2] = 0;
 	state = parsing(data, fd);
 	ft_print_error(state, data, fd);
 	close(fd);

@@ -28,9 +28,9 @@ int	ft_check_line(t_data *data, char *l)
 		if (l[i] != '1' && l[i] != '0'
 			&& l[i] != 'P' && l[i] != 'E' && l[i] != 'C')
 			return (1);
-		if (data -> map_elements[0] > '1')
+		if (data -> map_elements[0] > 1)
 			return (7);
-		if (data -> map_elements[1] > '1')
+		if (data -> map_elements[1] > 1)
 			return (5);
 		i++;
 	}
@@ -55,11 +55,11 @@ int	ft_check_first_last_line(char *line)
 
 int	ft_check_elements(t_data *data)
 {
-	if (data -> map_elements[0] < '1')
+	if (data -> map_elements[0] < 1)
 		return (6);
-	if (data -> map_elements[1] < '1')
+	if (data -> map_elements[1] < 1)
 		return (4);
-	if (data -> map_elements[2] < '1')
+	if (data -> map_elements[2] < 1)
 		return (8);
 	return (0);
 }
