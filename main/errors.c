@@ -12,6 +12,29 @@
 
 #include "parsing.h"
 
+int	ft_close_window(t_data *data)
+{
+	ft_free_all(data);
+	free(data -> tab);
+	free(data -> map_elements);
+	mlx_destroy_image(data -> mlx, data -> empty_tile -> mlx_img);
+	free(data -> empty_tile);
+	mlx_destroy_image(data -> mlx, data -> wall_tile -> mlx_img);
+	free(data -> wall_tile);
+	mlx_destroy_image(data -> mlx, data -> player_tile -> mlx_img);
+	free(data -> player_tile);
+	mlx_destroy_image(data -> mlx, data -> exit_tile -> mlx_img);
+	free(data -> exit_tile);
+	mlx_destroy_image(data -> mlx, data -> obj_tile -> mlx_img);
+	free(data -> obj_tile);
+	mlx_destroy_window(data -> mlx, data -> win);
+	mlx_destroy_display(data -> mlx);
+	free(data -> mlx);
+	free(data);
+	exit(EXIT_SUCCESS);
+	return (0);
+}
+
 void	ft_free_all(t_data *data)
 {
 	int	i;
@@ -22,14 +45,11 @@ void	ft_free_all(t_data *data)
 		free(data -> tab[i]);
 		i++;
 	}
-	free(data -> tab);
-	free(data -> map_elements);
-	free(data);
 }
 
 int	ft_print_error(int state, t_data *data, int fd)
 {
-	if (fd < 0)
+	if (data -> fd < 0)
 	{
 		printf("Error can't open map\n");
 		free(data);
@@ -39,56 +59,56 @@ int	ft_print_error(int state, t_data *data, int fd)
 	{
 		printf("Error char illegal\n");
 		free(data);
-		close(fd);
+		close(data -> fd);
 		exit(EXIT_FAILURE);
 	}
 	if (state == 2)
 	{
 		printf("Error reading map dimensions.\n");
 		free(data);
-		close(fd);
+		close(data -> fd);
 		exit(EXIT_FAILURE);
 	}
 	if (state == 3)
 	{
 		printf("Error no wall around.\n");
 		free(data);
-		close(fd);
+		close(data -> fd);
 		exit(EXIT_FAILURE);
 	}
 	if (state == 4)
 	{
 		printf("Error no exit.\n");
 		free(data);
-		close(fd);
+		close(data -> fd);
 		exit(EXIT_FAILURE);
 	}
 	if (state == 5)
 	{
 		printf("Error too much exits.\n");
 		free(data);
-		close(fd);
+		close(data -> fd);
 		exit(EXIT_FAILURE);
 	}
 	if (state == 6)
 	{
 		printf("Error no player.\n");
 		free(data);
-		close(fd);
+		close(data -> fd);
 		exit(EXIT_FAILURE);
 	}
 	if (state == 7)
 	{
 		printf("Error too much player.\n");
 		free(data);
-		close(fd);
+		close(data -> fd);
 		exit(EXIT_FAILURE);
 	}
 	if (state == 8)
 	{
 		printf("Error not enough collectible.\n");
 		free(data);
-		close(fd);
+		close(data -> fd);
 		exit(EXIT_FAILURE);
 	}
 	return (0);

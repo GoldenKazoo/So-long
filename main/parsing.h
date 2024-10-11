@@ -41,6 +41,7 @@ typedef struct s_data
 	int		p_pos_y;
 	int		coups;
 	int		found_exit;
+	int		fd;
 	t_img	*empty_tile;
 	t_img	*wall_tile;
 	t_img	*player_tile;
@@ -50,6 +51,7 @@ typedef struct s_data
 	void	*win;
 }	t_data;
 
+int		ft_close_window(t_data *data);
 int		ft_get_pixelcolor(t_img *img, int x, int y);
 char	*ft_strdup(char *src);
 void	ft_put_pixelimage(t_img *img, int x, int y, int color);
@@ -79,3 +81,5 @@ void	ft_moove_left(int keycode, t_data *data);
 int		ft_check_line(t_data *data, char *l);
 int		ft_check_first_last_line(char *line);
 int		ft_check_elements(t_data *data);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+t_data	*ft_data_init(t_data *data, int fd);

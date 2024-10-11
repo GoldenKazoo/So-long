@@ -49,7 +49,7 @@ t_data	*ft_data_init(t_data *data, int fd)
 		printf("Erreur lors du chargement de la carte\n");
 		return (NULL);
 	}
-	data->mlx = mlx_init();
+	data -> mlx = mlx_init();
 	if (!data->mlx)
 	{
 		printf("Erreur: échec de l'initialisation de MLX\n");
@@ -72,14 +72,22 @@ t_data	*ft_data_init(t_data *data, int fd)
 
 int	ft_check_arg_fd(int argc, char **argv, int fd)
 {
+	int	len;
+
 	if (argc != 2)
 	{
-		printf("Usage: %s <map_file>\n", argv[0]);
+		printf("Error, to use: %s <map_file.ber>\n", argv[0]);
 		return (1);
 	}
 	if (fd < 0)
 	{
-		printf("Erreur: impossible d'ouvrir le fichier %s\n", argv[1]);
+		printf("Error: can't open file");
+		return (1);
+	}
+	len = ft_strlen(argv[1]);
+	if (len < 4 || ft_strncmp(argv[1] + len - 4, ".ber", len) != 0)
+	{
+		printf("Error: filename must finish with .ber\n");
 		return (1);
 	}
 	return (0);
@@ -90,22 +98,27 @@ int	main(int argc, char **argv)
 	t_data	*data;
 	int		fd;
 
-	fd = open(argv[1], O_RDONLY);
-	if (ft_check_arg_fd(argc, argv, fd) == 1)
-		return (1);
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (1);
+	data -> fd = open(argv[1], O_RDONLY);
+	if (ft_check_arg_fd(argc, argv, data -> fd) == 1)
+	{
+		free(data);
+		return (1);
+	}
 	data->player_tile = malloc(sizeof(t_img));
 	data->empty_tile = malloc(sizeof(t_img));
 	data->wall_tile = malloc(sizeof(t_img));
 	data->obj_tile = malloc(sizeof(t_img));
 	data->exit_tile = malloc(sizeof(t_img));
-	data = ft_data_init(data, fd);
+	data = ft_data_init(data, data -> fd);
 	if (!data)
 		return (1);
 	ft_paint_map(data);
 	ft_key_hooks(data);
+	mlx_hook(data->win, 17, 0, (int (*)())ft_close_window, data);
 	mlx_loop(data->mlx);
+	ft_free_all(data);
 	return (0);
 }

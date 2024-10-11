@@ -60,7 +60,10 @@ int	get_pos_y(t_data *data)
 int	inputs(int keycode, t_data *data)
 {
 	if (keycode == XK_Escape)
+	{
+		ft_close_window(data);
 		exit(EXIT_SUCCESS);
+	}
 	if (keycode == XK_W || keycode == XK_w)
 		ft_moove_up(keycode, data);
 	if (keycode == XK_S || keycode == XK_s)
