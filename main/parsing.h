@@ -33,7 +33,7 @@ typedef struct s_img
 typedef struct s_data
 {
 	char	**tab;
-	char	*map_elements;
+	int		*map_elements;
 	int		map_width;
 	int		map_height;
 	int		tile_dim;
