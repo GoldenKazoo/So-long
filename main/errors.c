@@ -1,52 +1,95 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
+/*   Updated: 2024/08/27 16:14:14 by zchagar          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
-int	ft_check_line(t_data *data, char *l)
+void	ft_free_all(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	while (i < ft_strlen(l))
+	while (i < (data -> map_height))
 	{
-		if (l[i] == 'P')
-			data -> map_elements[0] = data -> map_elements[0] + 1;
-		if (l[i] == 'E')
-			data -> map_elements[1] = data -> map_elements[1] + 1;
-		if (l[i] == 'C')
-			data -> map_elements[2] = data -> map_elements[2] + 1;
-
-		if (l[i] != '1' || l[i] != '0' || l[i] != 'P' || l[i] != 'E' || l[i] != 'C')
-			return (1); // Illegal char
-		if (data -> map_elements[0] > 1)
-			return (6); // Too much exit
-		if (data -> map_elements[1] > 1)
-			return (7); // Too much player
+		free(data -> tab[i]);
 		i++;
 	}
-	if (l[0] || l[ft_strlen(l) - 1])
-		return (3);
-	return (0);
+	free(data -> tab);
+	free(data -> map_elements);
+	free(data);
 }
-int	ft_check_first_last_line(char *line)
-{
-	int	i;
 
-	i = 0;
-	while (i < ft_strlen(line))
+int	ft_print_error(int state, t_data *data, int fd)
+{
+	if (fd < 0)
 	{
-		if(line[i] != '1')
-			return (2); // No wall around
-		i++;
+		printf("Error can't open map\n");
+		free(data);
+		exit(EXIT_FAILURE);
 	}
-	return (0);
-}
-
-int	ft_check_elements(t_data *data)
-{
-	if (data -> map_elements[0] < '1')
-		return (6);
-	if (data -> map_elements[1] < '1')
-		return (4);
-	if (data -> map_elements[2] < '1')
-		return (8);
+	if (state == 1)
+	{
+		printf("Error char illegal\n");
+		free(data);
+		close(fd);
+		exit(EXIT_FAILURE);
+	}
+	if (state == 2)
+	{
+		printf("Error reading map dimensions.\n");
+		free(data);
+		close(fd);
+		exit(EXIT_FAILURE);
+	}
+	if (state == 3)
+	{
+		printf("Error no wall around.\n");
+		free(data);
+		close(fd);
+		exit(EXIT_FAILURE);
+	}
+	if (state == 4)
+	{
+		printf("Error no exit.\n");
+		free(data);
+		close(fd);
+		exit(EXIT_FAILURE);
+	}
+	if (state == 5)
+	{
+		printf("Error too much exits.\n");
+		free(data);
+		close(fd);
+		exit(EXIT_FAILURE);
+	}
+	if (state == 6)
+	{
+		printf("Error no player.\n");
+		free(data);
+		close(fd);
+		exit(EXIT_FAILURE);
+	}
+	if (state == 7)
+	{
+		printf("Error too much player.\n");
+		free(data);
+		close(fd);
+		exit(EXIT_FAILURE);
+	}
+	if (state == 8)
+	{
+		printf("Error not enough collectible.\n");
+		free(data);
+		close(fd);
+		exit(EXIT_FAILURE);
+	}
 	return (0);
 }

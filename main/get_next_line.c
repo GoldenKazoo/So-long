@@ -102,5 +102,3 @@ char	*get_next_line(int fd)
 	free(buffer);
 	return (line);
 }
-
-

@@ -12,14 +12,14 @@
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *string)
+int	ft_strlen(char *string)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	if (!string)
 		return (i);
-	while (string[i] != '\0')
+	while (string[i] != '\0') //|| string[i] != '\n')
 	{
 		i++;
 	}

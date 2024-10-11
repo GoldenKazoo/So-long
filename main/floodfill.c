@@ -1,45 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
+/*   Updated: 2024/08/27 16:14:14 by zchagar          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdbool.h>
 #include "parsing.h"
 
-void flood_fill(t_data *data, int x, int y, int *found_exit, int *collectibles_left) {
-	// Est ce qu'on est hors de la map ?
+void	flood_fill(t_data *data, int x, int y, int *items_left)
+{
 	if (x < 0 || x >= data -> map_width || y < 0 || y >= data -> map_height)
-		return;
-
-	// Si la case est un mur ou déjà visitée, on stop
+		return ;
 	if (data -> tab[y][x] == '1' || data -> tab[y][x] == 'V')
-		return;
-
-	// Si on trouve un collectible, on marque
-	if (data ->tab[y][x] == 'C') {
-		(*collectibles_left)--;
-	}
-
-	// Si on trouve la sortie, on la marque
-	if (data -> tab[y][x] == 'E') {
-		*found_exit = 1;
-	}
-
-	// met les cases check en V
+		return ;
+	if (data ->tab[y][x] == 'C')
+		(*items_left)--;
+	if (data -> tab[y][x] == 'E')
+		data -> found_exit = 1;
 	data -> tab[y][x] = 'V';
-
-	// Appeler la fonction récursivement dans les 4 directions
-	flood_fill(data, x + 1, y, found_exit, collectibles_left); // droite
-	flood_fill(data, x - 1, y, found_exit, collectibles_left); // gauche
-	flood_fill(data, x, y + 1, found_exit, collectibles_left); // bas
-	flood_fill(data, x, y - 1, found_exit, collectibles_left); // haut
+	flood_fill(data, x + 1, y, items_left);
+	flood_fill(data, x - 1, y, items_left);
+	flood_fill(data, x, y + 1, items_left);
+	flood_fill(data, x, y - 1, items_left);
 }
 
-int	check_map_accessibility(t_data *data) {
+int	check_map_accessibility_loop(t_data *data, int	*items_left)
+{
+	int	x;
+	int	y;
 
-	int	found_exit;
-	int	collectibles_left;
-	int x = 0;
-	int y = 0;
-	found_exit = 0;
-	collectibles_left = 0;
-
-	// Check la position du joueur et compter les items
+	x = 0;
+	y = 0;
 	while (y < data -> map_height)
 	{
 		x = 0;
@@ -47,22 +44,26 @@ int	check_map_accessibility(t_data *data) {
 		{
 			if (data->tab[y][x] == 'P')
 			{
-				data -> player_posX = x;
-				data -> player_posY = y;
-			} else if (data->tab[y][x] == 'C')
-			{
-				collectibles_left++;
+				data -> p_pos_x = x;
+				data -> p_pos_y = y;
 			}
+			if (data->tab[y][x] == 'C')
+				items_left++;
 			x++;
 		}
 		y++;
 	}
-	// Lancer l'algorithme ff depuis la position du joueur
-	flood_fill(data, data -> player_posX, data -> player_posY, &found_exit, &collectibles_left);
+}
 
-	// Vérifier si tous les collectibles ont été ramassés et si la sortie est accessible
-	if ((collectibles_left == 0) && (found_exit == 1))
-		return(1);
+int	check_map_accessibility(t_data *data)
+{
+	int	items_left;
+
+	items_left = 0;
+	check_map_accessibility_loop(data, &items_left);
+	flood_fill(data, data -> p_pos_x, data -> p_pos_y, &items_left);
+	if ((items_left == 0) && (data -> found_exit == 1))
+		return (1);
 	else
-		return(0);
+		return (0);
 }
