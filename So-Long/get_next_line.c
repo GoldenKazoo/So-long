@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/08/27 16:14:14 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/14 17:21:08 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,12 @@ char	*get_next_line(int fd, int state)
 
 	read_value = BUFFER_SIZE;
 	buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
-	while (((ft_strchr(stash, '\n') == NULL) && (read_value == BUFFER_SIZE)) || (state != 0))
+	while (((ft_strchr(stash, '\n') == NULL)
+			&& (read_value == BUFFER_SIZE)) || (state != 0))
 	{
 		read_value = read(fd, buffer, BUFFER_SIZE);
-		if (state == -1 || fd < 0 || read(fd, 0, 0) < 0 || BUFFER_SIZE <= 0 || read_value < 0
+		if (state == -1 || fd < 0 || read(fd, 0, 0) < 0
+			|| BUFFER_SIZE <= 0 || read_value < 0
 			|| (read_value == 0 && ft_strlen(stash) == 0))
 		{
 			stash = ft_free_stash(stash, buffer);

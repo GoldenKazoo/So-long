@@ -1,29 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/08/27 16:14:14 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/14 17:21:47 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
-
-void	ft_map_to_tab(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	data -> tab = malloc (sizeof(char *) * ((data -> map_height)));
-	while (i < (data -> map_height))
-	{
-		data -> tab[i] = malloc(sizeof(char) * (data -> map_width + 1));
-		i++;
-	}
-}
+#include "include/parsing.h"
 
 void	ft_fill_map_tab(t_data *data, char *longline)
 {
@@ -34,6 +21,13 @@ void	ft_fill_map_tab(t_data *data, char *longline)
 	i = 0;
 	j = 0;
 	k = 0;
+	data -> tab = malloc (sizeof(char *) * ((data -> map_height)));
+	while (i < (data -> map_height))
+	{
+		data -> tab[i] = malloc(sizeof(char) * (data -> map_width + 1));
+		i++;
+	}
+	i = 0;
 	while (i < (data -> map_height))
 	{
 		while (j < (data -> map_width) + 1)
@@ -55,64 +49,84 @@ void	ft_free_img(t_data *data)
 	free(data -> exit_tile);
 	free(data -> obj_tile);
 }
+
+void	ft_free_to_error(t_data *data, int state, char *line, char *long_line)
+{
+	free(line);
+	ft_free_img(data);
+	free(data -> map_elements);
+	free(long_line);
+	ft_print_error(state, data);
+}
+
+int	ft_check_last_line(t_data *data, char *long_line)
+{
+	size_t	i;
+	char	c;
+
+	i = ft_strlen(long_line) - 1;
+	while ((ft_strlen(long_line) - data -> map_width) < i)
+	{
+		c = long_line[i];
+		if (long_line[i] != '1')
+			return (3);
+		i--;
+	}
+	return (0);
+}
+
+void	parsing_loop(t_data *data, char *line, char **long_line, int state)
+{
+	int	line_len;
+
+	state = ft_check_line(data, line);
+	if (state != 0)
+		ft_free_to_error(data, state, line, *long_line);
+	line_len = ft_strlen(line);
+	if (ft_strchr(line, '\n') == NULL)
+		line_len++;
+	if (line_len != data -> map_width)
+	{
+		state = 2;
+		ft_free_to_error(data, state, line, *long_line);
+	}
+	if (line != NULL && (data -> map_height) != 0)
+	{
+		*long_line = ft_strjoin(*long_line, line);
+	}
+}
+
 int	parsing(t_data *data)
 {
 	int		state;
-	int		l;
-	char	*line1;
-	char	*line2;
+	char	*line;
 	char	*long_line;
 
 	state = 0;
-	line1 = get_next_line(data -> fd, state);
-	long_line = ft_strdup(line1);
-	if (!line1)
-		exit(EXIT_FAILURE);
-	data -> map_width = ft_strlen(line1);
-	data -> map_height = 0;
-	state = ft_check_first_last_line(line1);
+	line = get_next_line(data -> fd, state);
+	if (line == NULL)
+		return (-1);
+	long_line = ft_strdup(line);
+	state = ft_check_first_line(long_line);
 	if (state != 0)
-		ft_print_error(3, data);
-	while (line1 != NULL)
+		return (state);
+	data -> map_width = ft_strlen(line);
+	while (line != NULL)
 	{
-		state = ft_check_line(data, line1);
-		if (state != 0)
+		if (data -> map_height != 0)
 		{
-			free(line1);
-			line1 = get_next_line(data -> fd, -1);
-			ft_free_img(data);
-			free(data -> map_elements);
-			free(line1);
-			free(long_line);
-			ft_print_error(state, data);
+			parsing_loop(data, line, &long_line, state);
+			free(line);
+			line = get_next_line(data -> fd, state);
 		}
-		line2 = ft_strdup(line1);
-		l = ft_strlen(line2);
-		if (ft_strchr(line2, '\n') == NULL)
-			l = l + 1;
-		if (l != data -> map_width)
-		{
-			free(long_line);
-			ft_free_img(data);
-			free(data -> map_elements);
-			free(line2);
-			free(line1);
-			return (2);
-		}
-		if (line2 != NULL && (data -> map_height) != 0)
-		{
-			long_line = ft_strjoin(long_line, line1);
-		}
-		free(line2);
-		free(line1);
-		line1 = get_next_line(data -> fd, state);
-		(data -> map_height)++;
+		data -> map_height++;
 	}
+	state = ft_check_last_line(data, long_line);
+	free(line);
 	if (state != 0)
 		return (state);
 	state = ft_check_elements(data);
 	(data -> map_width)--;
-	ft_map_to_tab(data);
 	ft_fill_map_tab(data, long_line);
 	free(long_line);
 	return (state);
@@ -131,27 +145,3 @@ t_data	*ft_return_map(t_data *data, int fd)
 	close(fd);
 	return (data);
 }
-
-/*
-void	ft_print_tab(t_data *data)
-{
-	char	s;
-	if (data -> tab == NULL)
-	{
-		printf("%s", "ALED");
-	}
-	printf("--------------\n");
-	for(int i = 0; i < data -> map_height; i++)
-	{
-		for(int j = 0; j < data -> map_width; j++)
-		{
-			s = (data -> tab[i][j]);
-			printf("%c", s);
-		}
-		printf("%c", '\n');
-	}
-	printf("--------------\n");
-	printf(" Longueur : %i\n", data -> map_height);
-	printf(" Largeur : %i\n", data -> map_width);
-	printf("--------------\n");
-}*/

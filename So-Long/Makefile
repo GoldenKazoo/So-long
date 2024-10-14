@@ -15,7 +15,7 @@ $(NAME): $(OBJS)
 	$(CC) $(OBJS) $(MLX) -o $(NAME)
 
 %.o: %.c
-	$(CC) $(INCLUDES) -c $< -o $@
+	$(CC) -g $(INCLUDES) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)

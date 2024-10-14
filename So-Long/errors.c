@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/08/27 16:14:14 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/14 17:15:08 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,13 @@ int	ft_print_error(int state, t_data *data)
 	if (state == 8)
 	{
 		printf("Error not enough collectible.\n");
+		close(data -> fd);
+		free(data);
+		exit(EXIT_FAILURE);
+	}
+	if (state == 9)
+	{
+		printf("Error empty file.\n");
 		close(data -> fd);
 		free(data);
 		exit(EXIT_FAILURE);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/08/27 16:14:14 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/14 17:20:37 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ int	inputs(int keycode, t_data *data)
 		ft_moove_right(keycode, data);
 	if (keycode == XK_D || keycode == XK_d)
 		ft_moove_left(keycode, data);
-	if (keycode == XK_W || keycode == XK_w
-		|| keycode == XK_S || keycode == XK_s
-		|| keycode == XK_A || keycode == XK_a
-		|| keycode == XK_D || keycode == XK_d)
+	if ((keycode == XK_W || keycode == XK_w
+			|| keycode == XK_S || keycode == XK_s
+			|| keycode == XK_A || keycode == XK_a
+			|| keycode == XK_D || keycode == XK_d))
 	{
 		data -> coups = data -> coups + 1;
 		printf("Coups : %i\n", data -> coups);

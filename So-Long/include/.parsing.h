@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/08/27 16:14:14 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/14 17:14:21 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
-#include "mlx.h"
+#include "minilibx-linux/mlx.h"
 #include <limits.h>
 #include "get_next_line.h"
 #include <stdio.h>
@@ -78,7 +78,7 @@ void	ft_moove_down(int keycode, t_data *data);
 void	ft_moove_right(int keycode, t_data *data);
 void	ft_moove_left(int keycode, t_data *data);
 int		ft_check_line(t_data *data, char *l);
-int		ft_check_first_last_line(char *line);
+int		ft_check_first_line(char *line);
 int		ft_check_elements(t_data *data);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 t_data	*ft_data_init(t_data *data, int fd);

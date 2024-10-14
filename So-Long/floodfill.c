@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   floodfill.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/08/27 16:14:14 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/14 17:15:47 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 #include "parsing.h"
 
-char	**ft_duplicate tab(t_data *data)
+char	**ft_duplicate_tab(t_data *data)
 {
 	int		x;
 	int		y;
@@ -36,7 +36,7 @@ char	**ft_duplicate tab(t_data *data)
 		}
 		y++;
 	}
-	return (duplicate)
+	return (duplicate);
 }
 
 void	flood_fill(t_data *data, int x, int y, int *items_left)

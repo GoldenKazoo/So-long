@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/08/27 16:14:14 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/14 17:22:30 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,60 +128,3 @@ int	main(int argc, char **argv)
 	ft_free_all(data);
 	return (0);
 }
-
-
-// int	ft_check_arg_fd(int argc, char **argv, t_data *data)
-// {
-// 	int	len;
-
-// 	if (argc != 2) 
-// 	{
-// 		free(data);
-// 		printf("Error: Usage: %s <map_file.ber>\n", argv[0]);
-// 		return (1);
-// 	}
-// 	data->fd = open(NULL, O_RDONLY);
-// 	if (data->fd < 0) 
-// 	{
-// 		free(data);
-// 		perror("Error: can't open file");
-// 		return (1);
-// 	}
-// 	len = ft_strlen(argv[1]);
-// 	if (len < 4 || ft_strncmp(argv[1] + len - 4, ".ber", len) != 0)
-// 	{
-// 		printf("Error: filename must finish with .ber\n");
-// 		return (1);
-// 	}
-// 	return (0);
-// }
-
-// t_data *ft_alloc_img(t_data *data)
-// {
-// 	data->player_tile = malloc(sizeof(t_img));
-// 	data->empty_tile = malloc(sizeof(t_img));
-// 	data->wall_tile = malloc(sizeof(t_img));
-// 	data->obj_tile = malloc(sizeof(t_img));
-// 	data->exit_tile = malloc(sizeof(t_img));
-// 	if (!data->player_tile || !data->empty_tile || !data->wall_tile ||
-// 		!data->obj_tile || !data->exit_tile)
-// 	{
-// 		free(data->player_tile);
-// 		free(data->empty_tile);
-// 		free(data->wall_tile);
-// 		free(data->obj_tile);
-// 		free(data->exit_tile);
-// 		free(data);
-// 		printf("Error: Memory allocation for images failed.\n");
-// 		return (NULL);
-// 	}
-// 	return (data);
-// }
-
-// void	ft_exit_error(t_data *data)
-// {
-// 	if (data)
-// 		free(data);
-// 	close(data->fd);
-// 	exit (EXIT_FAILURE);
-// }
