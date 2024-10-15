@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/15 19:52:05 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/15 20:58:07 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,6 @@ void	ft_fill_map_tab(t_data *data, char *longline)
 	}
 }
 
-int	ft_check_last_line(t_data *data, char *long_line)
-{
-	size_t	i;
-	char	c;
-
-	i = ft_strlen(long_line) - 1;
-	while ((ft_strlen(long_line) - data -> map_width) < i)
-	{
-		c = long_line[i];
-		if (long_line[i] != '1')
-			return (3);
-		i--;
-	}
-	return (0);
-}
-
 void	parsing_loop(t_data *data, char *line, char **long_line, int state)
 {
 	int	line_len;
@@ -76,6 +60,20 @@ void	parsing_loop(t_data *data, char *line, char **long_line, int state)
 	{
 		*long_line = ft_strjoin(*long_line, line);
 	}
+}
+
+void	ft_end_parsing(t_data *data, char *line, char *long_line, int state)
+{
+	state = ft_check_last_line(data, long_line);
+	free(line);
+	if (state != 0)
+		ft_print_error(state, data);
+	state = ft_check_elements(data);
+	if (state != 0)
+		ft_print_error(state, data);
+	(data -> map_width)--;
+	ft_fill_map_tab(data, long_line);
+	free(long_line);
 }
 
 int	parsing(t_data *data)
@@ -103,14 +101,7 @@ int	parsing(t_data *data)
 		}
 		data -> map_height++;
 	}
-	state = ft_check_last_line(data, long_line);
-	free(line);
-	if (state != 0)
-		return (state);
-	state = ft_check_elements(data);
-	(data -> map_width)--;
-	ft_fill_map_tab(data, long_line);
-	free(long_line);
+	ft_end_parsing(data, line, long_line, state);
 	return (state);
 }
 

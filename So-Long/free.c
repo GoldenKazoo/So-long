@@ -6,9 +6,11 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 19:51:29 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/15 19:52:12 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/15 20:18:16 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "parsing.h"
 
 int	ft_close_window(t_data *data)
 {

@@ -1,0 +1,15 @@
+./so_long map/maps_valid/ok.ber
+./so_long map/maps_valid/ok1.ber
+./so_long map/maps_valid/ok2.ber
+./so_long map/maps_valid/ok3.ber
+./so_long map/maps_valid/ok4.ber
+./so_long map/maps_valid/ok5.ber
+./so_long map/maps_valid/ok6.ber
+./so_long map/maps_valid/ok7.ber
+./so_long map/maps_valid/ok8.ber
+./so_long map/maps_valid/ok9.ber
+./so_long map/maps_valid/ok10.ber
+./so_long map/maps_valid/ok12.ber
+./so_long map/maps_valid/ok13.ber
+./so_long map/maps_valid/ok14.ber
+./so_long map/maps_valid/ok15.ber

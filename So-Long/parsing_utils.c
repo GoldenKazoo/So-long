@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/15 19:52:21 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/15 20:44:56 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,22 @@ int	ft_check_first_line(char *line)
 		if (line[i] != '1')
 			return (3);
 		i++;
+	}
+	return (0);
+}
+
+int	ft_check_last_line(t_data *data, char *long_line)
+{
+	size_t	i;
+	char	c;
+
+	i = ft_strlen(long_line) - 1;
+	while ((ft_strlen(long_line) - data -> map_width) < i)
+	{
+		c = long_line[i];
+		if (long_line[i] != '1' && long_line[i] != '\n')
+			return (3);
+		i--;
 	}
 	return (0);
 }

@@ -3,7 +3,7 @@ CC = clang
 CFLAGS = -Wall -Wextra -Werror
 MLX = -Lminilibx-linux -lmlx -lXext -lX11 -lm
 INCLUDES = -Iinclude -Iminilibx-linux  # Ajout du dossier de minilibx-linux
-SRCS = errors.c floodfill.c get_next_line_utils.c get_next_line.c hooks_utils.c hooks.c main_utils.c main.c paint_map_utils.c paint_map.c parsing_utils.c parsing.c
+SRCS = errors.c floodfill.c data_init.c get_next_line_utils.c get_next_line.c hooks_utils.c hooks.c free.c main_utils.c main.c paint_map_utils.c paint_map.c parsing_utils.c parsing.c
 OBJS = $(SRCS:.c=.o)
 NAME = so_long
 
