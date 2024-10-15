@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/14 17:14:21 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/15 18:59:55 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
-#include "minilibx-linux/mlx.h"
+#include "../minilibx-linux/mlx.h"
 #include <limits.h>
 #include "get_next_line.h"
 #include <stdio.h>

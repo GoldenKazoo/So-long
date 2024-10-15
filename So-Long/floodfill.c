@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/14 17:15:47 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/15 19:00:42 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 char	**ft_duplicate_tab(t_data *data)
 {
-	int		x;
+	int		i;
 	int		y;
 	char	**duplicate;
 
-	x = 0;
+	i = 0;
 	y = 0;
 	duplicate = malloc (sizeof(char *) * ((data -> map_height)));
 	while (i < (data -> map_height))
@@ -32,7 +32,7 @@ char	**ft_duplicate_tab(t_data *data)
 		i = 0;
 		while (i < data ->map_width)
 		{
-			duplicate[y][x] = data -> tab[y][x];
+			duplicate[y][i] = data -> tab[y][i];
 		}
 		y++;
 	}
