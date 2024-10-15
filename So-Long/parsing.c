@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/15 19:38:31 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/15 19:52:05 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,6 @@ void	ft_fill_map_tab(t_data *data, char *longline)
 		j = 0;
 		i++;
 	}
-}
-
-void	ft_free_img(t_data *data)
-{
-	free(data -> empty_tile);
-	free(data -> wall_tile);
-	free(data -> player_tile);
-	free(data -> exit_tile);
-	free(data -> obj_tile);
-}
-
-void	ft_free_to_error(t_data *data, int state, char *line, char *long_line)
-{
-	free(line);
-	ft_free_img(data);
-	free(data -> map_elements);
-	free(long_line);
-	ft_print_error(state, data);
 }
 
 int	ft_check_last_line(t_data *data, char *long_line)

@@ -6,11 +6,11 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/14 13:56:07 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/15 19:52:21 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "include/parsing.h"
 
 int	ft_check_line(t_data *data, char *l)
 {

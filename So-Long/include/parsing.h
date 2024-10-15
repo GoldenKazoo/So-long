@@ -6,20 +6,23 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/15 18:59:55 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/15 20:01:42 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include "../minilibx-linux/mlx.h"
-#include <limits.h>
-#include "get_next_line.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#ifndef PARSING_H
+# define PARSING_H
+
+# include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdio.h>
+# include "../minilibx-linux/mlx.h"
+# include <limits.h>
+# include "get_next_line.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <time.h>
 
 typedef struct s_img
 {
@@ -82,3 +85,5 @@ int		ft_check_first_line(char *line);
 int		ft_check_elements(t_data *data);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 t_data	*ft_data_init(t_data *data, int fd);
+
+#endif
