@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/15 22:02:46 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/16 04:57:52 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,9 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include <stdio.h>
 # include "../minilibx-linux/mlx.h"
 # include <limits.h>
 # include "get_next_line.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <time.h>
 
 typedef struct s_img
 {
@@ -63,15 +59,7 @@ void	ft_draw_tile(t_img *img, t_img *tile, int x, int y);
 int		get_pos_x(t_data *data);
 int		get_pos_y(t_data *data);
 void	ft_free_all(t_data *data);
-void	ft_count_elements(char c, char *elements);
-void	ft_printerror(int error);
 int		ft_key_hooks(t_data *data);
-void	ft_print_tab(t_data *data);
-int		ft_give_dim(t_data *data, int fd);
-int		ft_notchar(char c);
-int		ft_check_1st(size_t roof, char *line);
-int		ft_check_wall_and_char(size_t roof, char *line, char *elements);
-int		ft_check_top_bot(t_data *data);
 int		ft_print_error(int state, t_data *data);
 void	ft_free_all(t_data *data);
 void	ft_paint_map(t_data *data);
@@ -83,6 +71,7 @@ void	ft_moove_right(int keycode, t_data *data);
 void	ft_moove_left(int keycode, t_data *data);
 int		ft_check_line(t_data *data, char *l);
 int		ft_check_first_line(char *line);
+int		ft_check_last_line(t_data *data, char *long_line);
 int		ft_check_elements(t_data *data);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 t_data	*ft_data_init(t_data *data, int fd);
@@ -91,6 +80,7 @@ void	ft_free_img(t_data *data);
 void	ft_free_all(t_data *data);
 int		ft_close_window(t_data *data);
 t_data	*ft_data_init(t_data *data, int fd);
-int		ft_check_last_line(t_data *data, char *long_line);
-int	check_map_accessibility(t_data *data);
+int		check_map_accessibility(t_data *data);
+void	ft_free_all_dup(t_data *data);
+int		ft_printf(const char *str, ...);
 #endif

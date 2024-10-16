@@ -6,12 +6,11 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/16 01:58:47 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/16 04:53:36 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-#include "minilibx-linux/mlx.h"
 #include <X11/Xutil.h>
 
 void	ft_moove_up(int keycode, t_data *data)
@@ -30,7 +29,7 @@ void	ft_moove_up(int keycode, t_data *data)
 		if (data -> tab[(data -> p_pos_x) - 1][(data -> p_pos_y)] != 'E')
 		{
 			data -> coups = data -> coups + 1;
-			printf("Coups : %i\n", data -> coups);
+			ft_printf("Coups : %i\n", data -> coups);
 			data -> p_pos_x = data -> p_pos_x;
 			data -> p_pos_y = data -> p_pos_y;
 			data -> tab[data -> p_pos_x][data -> p_pos_y] = '0';
@@ -59,7 +58,7 @@ void	ft_moove_down(int keycode, t_data *data)
 		if (data -> tab[(data -> p_pos_x) + 1][(data -> p_pos_y)] != 'E')
 		{
 			data -> coups = data -> coups + 1;
-			printf("Coups : %i\n", data -> coups);
+			ft_printf("Coups : %i\n", data -> coups);
 			data -> p_pos_x = data -> p_pos_x;
 			data -> p_pos_y = data -> p_pos_y;
 			data -> tab[data -> p_pos_x][data -> p_pos_y] = '0';
@@ -86,7 +85,7 @@ void	ft_moove_right(int keycode, t_data *data)
 		if (data -> tab[(data -> p_pos_x)][(data -> p_pos_y) - 1] != 'E')
 		{
 			data -> coups = data -> coups + 1;
-			printf("Coups : %i\n", data -> coups);
+			ft_printf("Coups : %i\n", data -> coups);
 			data -> p_pos_y = data -> p_pos_y;
 			data -> tab[data -> p_pos_x][data -> p_pos_y] = '0';
 			data -> tab[(data -> p_pos_x)][(data -> p_pos_y) - 1] = 'P';
@@ -114,7 +113,7 @@ void	ft_moove_left(int keycode, t_data *data)
 		if (data -> tab[(data -> p_pos_x)][(data -> p_pos_y) + 1] != 'E')
 		{
 			data -> coups = data -> coups + 1;
-			printf("Coups : %i\n", data -> coups);
+			ft_printf("Coups : %i\n", data -> coups);
 			data -> p_pos_y = data -> p_pos_y;
 			data -> tab[data -> p_pos_x][data -> p_pos_y] = '0';
 			data -> tab[(data -> p_pos_x)][(data -> p_pos_y) + 1] = 'P';

@@ -6,13 +6,12 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/16 02:07:12 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/16 04:40:11 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include <X11/Xutil.h>
-#include "minilibx-linux/mlx.h"
 #include <stdlib.h>
 
 int	get_pos_x(t_data *data)
@@ -84,6 +83,7 @@ int	inputs(int keycode, t_data *data)
 int	ft_key_hooks(t_data *data)
 {
 	int	temp;
+
 	data -> coups = 0;
 	temp = data -> p_pos_x;
 	data -> p_pos_x = data -> p_pos_y;

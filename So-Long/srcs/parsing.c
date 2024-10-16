@@ -6,11 +6,11 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/15 20:58:07 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/16 04:40:52 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/parsing.h"
+#include "parsing.h"
 
 void	ft_fill_map_tab(t_data *data, char *longline)
 {
@@ -47,7 +47,9 @@ void	parsing_loop(t_data *data, char *line, char **long_line, int state)
 
 	state = ft_check_line(data, line);
 	if (state != 0)
+	{
 		ft_free_to_error(data, state, line, *long_line);
+	}
 	line_len = ft_strlen(line);
 	if (ft_strchr(line, '\n') == NULL)
 		line_len++;
@@ -67,10 +69,16 @@ void	ft_end_parsing(t_data *data, char *line, char *long_line, int state)
 	state = ft_check_last_line(data, long_line);
 	free(line);
 	if (state != 0)
+	{
+		free(long_line);
 		ft_print_error(state, data);
+	}
 	state = ft_check_elements(data);
 	if (state != 0)
+	{
+		free(long_line);
 		ft_print_error(state, data);
+	}
 	(data -> map_width)--;
 	ft_fill_map_tab(data, long_line);
 	free(long_line);
@@ -85,11 +93,11 @@ int	parsing(t_data *data)
 	state = 0;
 	line = get_next_line(data -> fd, state);
 	if (line == NULL)
-		return (-1);
+		return (9);
 	long_line = ft_strdup(line);
 	state = ft_check_first_line(long_line);
 	if (state != 0)
-		return (state);
+		ft_free_to_error(data, state, line, long_line);
 	data -> map_width = ft_strlen(line);
 	while (line != NULL)
 	{
@@ -109,6 +117,8 @@ t_data	*ft_return_map(t_data *data, int fd)
 {
 	int	state;
 
+	data -> map_height = 0;
+	data -> map_width = 0;
 	data -> map_elements = malloc(sizeof(int) * 3);
 	data -> map_elements[0] = 0;
 	data -> map_elements[1] = 0;

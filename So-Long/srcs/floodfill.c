@@ -6,11 +6,10 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/16 02:06:48 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/16 04:09:46 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
 #include "parsing.h"
 
 void	ft_duplicate_tab(t_data *data)
@@ -20,14 +19,14 @@ void	ft_duplicate_tab(t_data *data)
 
 	i = 0;
 	y = 0;
-	data -> copy = malloc (sizeof(char *) * (data -> map_height));
+	data -> copy = calloc (sizeof(char *), (data -> map_height));
 	if (!(data -> copy))
-		printf("ALED");
+		return ;
 	while (i < (data -> map_height))
 	{
 		data -> copy[i] = malloc(sizeof(char) * (data -> map_width + 1));
 		if (!(data -> copy[i]))
-			printf("ALED");
+			return ;
 		i++;
 	}
 	while (y < data -> map_height)
@@ -38,7 +37,6 @@ void	ft_duplicate_tab(t_data *data)
 			data -> copy[y][i] = data -> tab[y][i];
 			i++;
 		}
-		data -> copy[y][i] = '\0';
 		y++;
 	}
 }
@@ -87,22 +85,6 @@ void	check_map_accessibility_loop(t_data *data, int	*items_left)
 		y++;
 	}
 }
-void	ft_print_tab(t_data *data)
-{
-	char	s;
-	printf("--------------\n");
-	for(int i = 0; i < data -> map_height; i++)
-	{
-		for(int j = 0; j < data -> map_width; j++)
-		{
-			s = (data -> tab[i][j]);
-			printf("%c", s);
-		}
-		printf("%c", '\n');
-	}
-	printf("--------------\n");
-	printf("--------------\n");
-}
 
 int	check_map_accessibility(t_data *data)
 {
@@ -113,7 +95,15 @@ int	check_map_accessibility(t_data *data)
 	check_map_accessibility_loop(data, &items_left);
 	flood_fill(data, data -> p_pos_x, data -> p_pos_y, &items_left);
 	if ((items_left == 0) && (data -> found_exit == 1))
+	{
+		ft_free_all_dup(data);
+		free(data -> copy);
 		return (1);
+	}
 	else
+	{
+		ft_free_all_dup(data);
+		free(data -> copy);
 		return (0);
+	}
 }

@@ -6,11 +6,10 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/16 02:05:39 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/16 04:54:12 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx-linux/mlx.h"
 #include "parsing.h"
 #include <fcntl.h> // pour open()
 
@@ -20,20 +19,20 @@ int	ft_check_arg_fd(int argc, char **argv, t_data *data)
 
 	if (argc != 2)
 	{
-		printf("Error, to use: %s <map_file.ber>\n", argv[0]);
+		ft_printf("Error, to use: %s <map_file.ber>\n", argv[0]);
 		return (1);
 	}
 	len = ft_strlen(argv[1]);
 	if (len <= 4 || ft_strncmp(argv[1] + len - 4, ".ber", len) != 0
 		|| ft_strncmp(argv[1] + len - 5, "/.ber", len) == 0)
 	{
-		printf("Error: invalid file\n");
+		ft_printf("Error: invalid file\n");
 		return (1);
 	}
 	data -> fd = open(argv[1], O_RDONLY);
 	if (data -> fd < 0)
 	{
-		printf("Error: can't open file");
+		ft_printf("Error: can't open file");
 		return (1);
 	}
 	return (0);
@@ -45,7 +44,7 @@ void	ft_check_arg(int argc, char **argv, t_data *data)
 		exit (1);
 	if (argv[1] == NULL)
 	{
-		printf("Error, to use: %s <map_file.ber>\n", argv[0]);
+		ft_printf("Error, to use: %s <map_file.ber>\n", argv[0]);
 		free(data);
 		exit (1);
 	}
@@ -70,8 +69,8 @@ int	main(int argc, char **argv)
 	data = ft_data_init(data, data -> fd);
 	if (check_map_accessibility(data) == 0)
 	{
-		printf("Pas de chemin\n");
-		return 1;
+		ft_close_window(data);
+		ft_print_error(10, data);
 	}
 	if (!data)
 	{
