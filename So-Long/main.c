@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/15 21:40:06 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/16 02:05:39 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	ft_check_arg_fd(int argc, char **argv, t_data *data)
 		return (1);
 	}
 	len = ft_strlen(argv[1]);
-	if (len < 4 || ft_strncmp(argv[1] + len - 4, ".ber", len) != 0
+	if (len <= 4 || ft_strncmp(argv[1] + len - 4, ".ber", len) != 0
 		|| ft_strncmp(argv[1] + len - 5, "/.ber", len) == 0)
 	{
-		printf("Error: filename must finish with .ber\n");
+		printf("Error: invalid file\n");
 		return (1);
 	}
 	data -> fd = open(argv[1], O_RDONLY);
@@ -68,6 +68,11 @@ int	main(int argc, char **argv)
 	data->obj_tile = malloc(sizeof(t_img));
 	data->exit_tile = malloc(sizeof(t_img));
 	data = ft_data_init(data, data -> fd);
+	if (check_map_accessibility(data) == 0)
+	{
+		printf("Pas de chemin\n");
+		return 1;
+	}
 	if (!data)
 	{
 		return (1);

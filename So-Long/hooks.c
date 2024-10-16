@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/14 17:20:37 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/16 02:07:12 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,17 @@ int	inputs(int keycode, t_data *data)
 			|| keycode == XK_A || keycode == XK_a
 			|| keycode == XK_D || keycode == XK_d))
 	{
-		data -> coups = data -> coups + 1;
-		printf("Coups : %i\n", data -> coups);
 	}
 	return (0);
 }
 
 int	ft_key_hooks(t_data *data)
 {
+	int	temp;
 	data -> coups = 0;
+	temp = data -> p_pos_x;
+	data -> p_pos_x = data -> p_pos_y;
+	data -> p_pos_y = temp;
 	mlx_key_hook(data -> win, inputs, data);
 	return (0);
 }

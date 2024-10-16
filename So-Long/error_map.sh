@@ -20,6 +20,24 @@
 ./so_long map/maps_err/no_rectangular8.ber
 ./so_long map/maps_err/no_rectangular9.ber
 
+./so_long map/maps_err/no_valid_road.ber
+./so_long map/maps_err/no_valid_road1.ber
+./so_long map/maps_err/no_valid_road2.ber
+./so_long map/maps_err/no_valid_road3.ber
+./so_long map/maps_err/no_valid_road4.ber
+./so_long map/maps_err/no_valid_road5.ber
+./so_long map/maps_err/no_valid_road6.ber
+./so_long map/maps_err/no_valid_road7.ber
+./so_long map/maps_err/no_valid_road8.ber
+./so_long map/maps_err/no_valid_road9.ber
+./so_long map/maps_err/no_valid_road10.ber
+./so_long map/maps_err/no_valid_road11.ber
+./so_long map/maps_err/no_valid_road12.ber
+./so_long map/maps_err/no_valid_road14.ber
+./so_long map/maps_err/no_valid_road15.ber
+
+
+
 ./so_long map/maps_err/no_walls.ber
 ./so_long map/maps_err/no_walls1.ber
 ./so_long map/maps_err/no_walls2.ber

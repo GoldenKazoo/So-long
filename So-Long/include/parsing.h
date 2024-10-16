@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/15 21:51:04 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/15 22:02:46 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,5 @@ void	ft_free_all(t_data *data);
 int		ft_close_window(t_data *data);
 t_data	*ft_data_init(t_data *data, int fd);
 int		ft_check_last_line(t_data *data, char *long_line);
+int	check_map_accessibility(t_data *data);
 #endif
