@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/16 05:14:17 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/18 21:37:10 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,15 @@ int	ft_print_error(int state, t_data *data)
 	if (state == 9)
 	{
 		ft_printf("Error empty file.\n");
+		close(data -> fd);
+		free(data);
+		exit(EXIT_FAILURE);
+	}
+	if (state == 11)
+	{
+		free(data -> map_elements);
+		ft_free_img(data);
+		ft_printf("Map is too big.\n");
 		close(data -> fd);
 		free(data);
 		exit(EXIT_FAILURE);

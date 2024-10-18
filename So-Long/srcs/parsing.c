@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/16 04:40:52 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/18 21:48:06 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,13 @@ void	parsing_loop(t_data *data, char *line, char **long_line, int state)
 
 void	ft_end_parsing(t_data *data, char *line, char *long_line, int state)
 {
+	if (data -> map_height * data -> map_width > 10000
+		|| data -> map_height > 30)
+	{
+		free(long_line);
+		ft_print_error(11, data);
+		exit(1);
+	}
 	state = ft_check_last_line(data, long_line);
 	free(line);
 	if (state != 0)

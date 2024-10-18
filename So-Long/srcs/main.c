@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/16 04:54:12 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/18 21:52:58 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	main(int argc, char **argv)
 	data->obj_tile = malloc(sizeof(t_img));
 	data->exit_tile = malloc(sizeof(t_img));
 	data = ft_data_init(data, data -> fd);
+	if (!data)
+		exit(1);
 	if (check_map_accessibility(data) == 0)
 	{
 		ft_close_window(data);
