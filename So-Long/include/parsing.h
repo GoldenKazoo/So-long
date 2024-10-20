@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/20 13:38:34 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/20 16:03:54 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ft_print_error2(int state, t_data *data);
 void	ft_print_error3(int state, t_data *data);
 void	ft_print_error4(int state, t_data *data);
 void	ft_print_error5(int state, t_data *data);
+void	parsing_loop(t_data *data, char *line, char **long_line, int state);
 void	ft_free_img(t_data *data);
 int		ft_get_pixelcolor(t_img *img, int x, int y);
 char	*ft_strdup(char *src);

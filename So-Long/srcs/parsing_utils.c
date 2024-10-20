@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/16 04:40:41 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/20 16:32:36 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,27 @@ int	ft_check_elements(t_data *data)
 	return (0);
 }
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	parsing_loop(t_data *data, char *line, char **long_line, int state)
 {
-	size_t	i;
+	int	line_len;
 
-	i = 0;
-	if (n == 0)
-		return (0);
-	while (s1[i] == s2[i] && (i < n - 1) && s1[i])
-		i++;
-	return ((unsigned char) s1[i] - (unsigned char) s2[i]);
+	state = ft_check_line(data, line);
+	if (state != 0)
+	{
+		ft_free_to_error(data, state, line, *long_line);
+	}
+	line_len = ft_strlen(line);
+	if (ft_strchr(line, '\n') == NULL)
+		line_len++;
+	if (line_len != data -> map_width)
+	{
+		state = 2;
+		ft_free_to_error(data, state, line, *long_line);
+	}
+	if (line != NULL && (data -> map_height) != 0)
+	{
+		*long_line = ft_strjoin(*long_line, line);
+		if (!long_line)
+			return ;
+	}
 }

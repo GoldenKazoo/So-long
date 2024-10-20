@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/20 14:35:42 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/20 16:43:36 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 
 int	ft_print_error(int state, t_data *data)
 {
-	if (state == 12)
-	{
-		ft_printf("Can't find path.\n");
-		exit(EXIT_FAILURE);
-	}
 	ft_print_error1(state, data);
 	ft_print_error2(state, data);
 	ft_print_error3(state, data);
@@ -35,6 +30,7 @@ int	ft_print_error(int state, t_data *data)
 	}
 	if (state == 11)
 	{
+		get_next_line(data -> fd, -1);
 		free(data -> map_elements);
 		ft_free_img(data);
 		ft_printf("Map is too big.\n");

@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 04:16:19 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/16 04:41:35 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/20 15:59:39 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,16 @@ void	ft_putstr_fd(char *s, int fd)
 		write(fd, &s[i], 1);
 		i++;
 	}
+}
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (s1[i] == s2[i] && (i < n - 1) && s1[i])
+		i++;
+	return ((unsigned char) s1[i] - (unsigned char) s2[i]);
 }

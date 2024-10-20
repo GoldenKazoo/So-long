@@ -6,28 +6,47 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/20 14:24:21 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/20 16:44:36 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void	ft_fill_map_tab(t_data *data, char *longline)
+void	ft_fill_map_tab_aux(t_data *data)
 {
 	int		i;
 	int		j;
-	int		k;
+
+	i = 0;
+	j = 0;
+	data -> tab = malloc (sizeof(char *) * ((data -> map_height)));
+	if (!data -> tab)
+	{
+		ft_print_error(10, data);
+		return ;
+	}
+	while (i < (data -> map_height))
+	{
+		data -> tab[i] = malloc(sizeof(char) * (data -> map_width + 1));
+		if (!data -> tab[i])
+		{
+			ft_print_error(10, data);
+			return ;
+		}
+		i++;
+	}
+}
+
+void	ft_fill_map_tab(t_data *data, char *longline)
+{
+	int	i;
+	int	j;
+	int	k;
 
 	i = 0;
 	j = 0;
 	k = 0;
-	data -> tab = malloc (sizeof(char *) * ((data -> map_height)));
-	while (i < (data -> map_height))
-	{
-		data -> tab[i] = malloc(sizeof(char) * (data -> map_width + 1));
-		i++;
-	}
-	i = 0;
+	ft_fill_map_tab_aux(data);
 	while (i < (data -> map_height))
 	{
 		while (j < (data -> map_width) + 1)
@@ -41,34 +60,12 @@ void	ft_fill_map_tab(t_data *data, char *longline)
 	}
 }
 
-void	parsing_loop(t_data *data, char *line, char **long_line, int state)
-{
-	int	line_len;
-
-	state = ft_check_line(data, line);
-	if (state != 0)
-	{
-		ft_free_to_error(data, state, line, *long_line);
-	}
-	line_len = ft_strlen(line);
-	if (ft_strchr(line, '\n') == NULL)
-		line_len++;
-	if (line_len != data -> map_width)
-	{
-		state = 2;
-		ft_free_to_error(data, state, line, *long_line);
-	}
-	if (line != NULL && (data -> map_height) != 0)
-	{
-		*long_line = ft_strjoin(*long_line, line);
-	}
-}
-
 void	ft_end_parsing(t_data *data, char *line, char *long_line, int state)
 {
 	if (data -> map_height * data -> map_width > 10000
 		|| data -> map_height > 30)
 	{
+		free(line);
 		free(long_line);
 		ft_print_error(11, data);
 		exit(1);
@@ -102,11 +99,13 @@ int	parsing(t_data *data)
 	if (line == NULL)
 		return (9);
 	long_line = ft_strdup(line);
+	if (!long_line)
+		return (10);
 	state = ft_check_first_line(long_line);
 	if (state != 0)
 		ft_free_to_error(data, state, line, long_line);
 	data -> map_width = ft_strlen(line);
-	while (line != NULL)
+	while (line != NULL && data -> map_height <= 30)
 	{
 		if (data -> map_height != 0)
 			parsing_loop(data, line, &long_line, state);
@@ -125,6 +124,8 @@ t_data	*ft_return_map(t_data *data, int fd)
 	data -> map_height = 0;
 	data -> map_width = 0;
 	data -> map_elements = malloc(sizeof(int) * 3);
+	if (!data -> map_elements)
+		return (NULL);
 	data -> map_elements[0] = 0;
 	data -> map_elements[1] = 0;
 	data -> map_elements[2] = 0;

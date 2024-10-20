@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 13:35:07 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/20 14:34:03 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/20 15:57:44 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	ft_print_error1(int state, t_data *data)
 {
+	if (state == 12)
+	{
+		ft_printf("Can't find path.\n");
+		exit(EXIT_FAILURE);
+	}
 	if (data -> fd < 0)
 	{
 		free(data -> map_elements);
