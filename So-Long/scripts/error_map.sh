@@ -1,57 +1,84 @@
 ./so_long map/maps_err/.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/.ber
+funcheck ./so_long map/maps_err/.ber
 echo "==================================================================="
+
 ./so_long map/maps_err/badextension1.txt
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/badextension1.txt
+funcheck ./so_long map/maps_err/badextension1.txt
 echo "==================================================================="
+
 ./so_long map/maps_err/badextension2.ber.txt
-valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/badextension2.ber.txt
+valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/badextension2.ber.txtfuncheck
+funcheck ./so_long map/maps_err/badextension2.ber.txtfuncheck
 echo "==================================================================="
 
 ./so_long map/maps_err/duplicate_exit.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/duplicate_exit.ber
+funcheck ./so_long map/maps_err/duplicate_exit.ber
 echo "==================================================================="
+
 ./so_long map/maps_err/duplicate_player.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/duplicate_player.ber
+funcheck ./so_long map/maps_err/duplicate_player.ber
 echo "==================================================================="
 
 ./so_long map/maps_err/no_exit.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/no_exit.ber
+funcheck ./so_long map/maps_err/no_exit.ber
 echo "==================================================================="
+
 ./so_long map/maps_err/no_object.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/no_object.ber
+funcheck ./so_long map/maps_err/no_exit.ber
 echo "==================================================================="
+
 ./so_long map/maps_err/no_player.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/no_player.ber
+funcheck ./so_long map/maps_err/no_exit.ber
 echo "==================================================================="
 
 ./so_long map/maps_err/no_rectangular.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/no_rectangular.ber
+funcheck ./so_long map/maps_err/no_exit.ber
 echo "==================================================================="
+
 ./so_long map/maps_err/no_rectangular1.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/no_rectangular1.ber
+funcheck ./so_long map/maps_err/no_exit.ber
 echo "==================================================================="
+
 ./so_long map/maps_err/no_rectangular2.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/no_rectangular2.ber
+funcheck ./so_long map/maps_err/no_exit.ber
 echo "==================================================================="
+
 ./so_long map/maps_err/no_rectangular3.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/no_rectangular3.ber
+funcheck ./so_long map/maps_err/no_exit.ber
 echo "==================================================================="
+
 ./so_long map/maps_err/no_rectangular4.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/no_rectangular4.ber
+funcheck ./so_long map/maps_err/no_exit.ber
 echo "==================================================================="
+
 ./so_long map/maps_err/no_rectangular5.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/no_rectangular5.ber
 echo "==================================================================="
+
 ./so_long map/maps_err/no_rectangular6.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/no_rectangular6.ber
 echo "==================================================================="
+
 ./so_long map/maps_err/no_rectangular7.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/no_rectangular7.ber
 echo "==================================================================="
+
 ./so_long map/maps_err/no_rectangular8.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/no_rectangular8.ber
 echo "==================================================================="
+
 ./so_long map/maps_err/no_rectangular9.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/no_rectangular9.ber
 echo "==================================================================="
@@ -59,21 +86,27 @@ echo "==================================================================="
 ./so_long map/maps_err/no_valid_road.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/no_valid_road.ber
 echo "==================================================================="
+
 ./so_long map/maps_err/no_valid_road1.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/no_valid_road1.ber
 echo "==================================================================="
+
 ./so_long map/maps_err/no_valid_road2.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/no_valid_road2.ber
 echo "==================================================================="
+
 ./so_long map/maps_err/no_valid_road3.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/no_valid_road3.ber
 echo "==================================================================="
+
 ./so_long map/maps_err/no_valid_road4.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/no_valid_road4.ber
 echo "==================================================================="
+
 ./so_long map/maps_err/no_valid_road5.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/no_valid_road5.ber
 echo "==================================================================="
+
 ./so_long map/maps_err/no_valid_road6.ber
 valgrind --leak-check=full --show-leak-kinds=all ./so_long map/maps_err/no_valid_road6.ber
 echo "==================================================================="

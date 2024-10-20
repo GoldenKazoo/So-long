@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/20 15:01:10 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/20 16:53:50 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	inputs(int keycode, t_data *data)
 	if (keycode == XK_Escape)
 	{
 		ft_close_window(data);
-		exit(EXIT_SUCCESS);
+		exit(0);
 	}
 	if (keycode == XK_W || keycode == XK_w)
 		ft_moove_up(keycode, data);

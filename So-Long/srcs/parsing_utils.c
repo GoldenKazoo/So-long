@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/20 16:32:36 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/20 17:01:14 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ int	ft_check_first_line(char *line)
 int	ft_check_last_line(t_data *data, char *long_line)
 {
 	size_t	i;
-	char	c;
 
+	if (!long_line)
+		ft_print_error(10, data);
 	i = ft_strlen(long_line) - 1;
 	while ((ft_strlen(long_line) - data -> map_width) < i)
 	{
-		c = long_line[i];
 		if (long_line[i] != '1' && long_line[i] != '\n')
 			return (3);
 		i--;
