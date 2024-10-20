@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/18 21:52:58 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/20 13:55:14 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,24 +55,41 @@ void	ft_check_arg(int argc, char **argv, t_data *data)
 	}
 }
 
+void	ft_init_game(t_data *data)
+{
+	data->player_tile = malloc(sizeof(t_img));
+	if (!data -> player_tile)
+		ft_free_img(data);
+	data->empty_tile = malloc(sizeof(t_img));
+	if (!data -> player_tile)
+		ft_free_img(data);
+	data->wall_tile = malloc(sizeof(t_img));
+	if (!data -> player_tile)
+		ft_free_img(data);
+	data->obj_tile = malloc(sizeof(t_img));
+	if (!data -> player_tile)
+		ft_free_img(data);
+	data->exit_tile = malloc(sizeof(t_img));
+	if (!data -> player_tile)
+		ft_free_img(data);
+	data = ft_data_init(data, data -> fd);
+	if (!data)
+		exit(1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
 
 	data = malloc(sizeof(t_data));
 	ft_check_arg(argc, argv, data);
-	data->player_tile = malloc(sizeof(t_img));
-	data->empty_tile = malloc(sizeof(t_img));
-	data->wall_tile = malloc(sizeof(t_img));
-	data->obj_tile = malloc(sizeof(t_img));
-	data->exit_tile = malloc(sizeof(t_img));
-	data = ft_data_init(data, data -> fd);
+	ft_init_game(data);
 	if (!data)
 		exit(1);
 	if (check_map_accessibility(data) == 0)
 	{
 		ft_close_window(data);
-		ft_print_error(10, data);
+		ft_print_error(12, data);
 	}
 	if (!data)
 	{

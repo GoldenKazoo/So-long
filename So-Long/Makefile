@@ -5,6 +5,7 @@ INCLUDES = -Iinclude -Iminilibx-linux
 SRCS = srcs/data_init.c srcs/errors.c srcs/floodfill.c srcs/free.c \
 		srcs/hooks_utils.c srcs/hooks.c srcs/main.c srcs/paint_map_utils.c \
 		srcs/paint_map.c srcs/parsing_utils.c srcs/parsing.c srcs/utils.c \
+		srcs/errors_utils.c srcs/free_utils.c \
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
 		printf/ft_printf_nbr_utils.c printf/ft_printf_ptr.c \
 		printf/ft_printf_utils.c printf/ft_printf.c

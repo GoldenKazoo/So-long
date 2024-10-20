@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/18 21:48:06 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/20 14:24:21 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,9 @@ int	parsing(t_data *data)
 	while (line != NULL)
 	{
 		if (data -> map_height != 0)
-		{
 			parsing_loop(data, line, &long_line, state);
-			free(line);
-			line = get_next_line(data -> fd, state);
-		}
+		free(line);
+		line = get_next_line(data -> fd, state);
 		data -> map_height++;
 	}
 	ft_end_parsing(data, line, long_line, state);
