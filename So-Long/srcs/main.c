@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/20 13:55:14 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/21 17:24:31 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	ft_check_arg(int argc, char **argv, t_data *data)
 		free(data);
 		exit (1);
 	}
+	data -> quit = 0;
 }
 
 void	ft_init_game(t_data *data)
@@ -88,8 +89,9 @@ int	main(int argc, char **argv)
 		exit(1);
 	if (check_map_accessibility(data) == 0)
 	{
-		ft_close_window(data);
 		ft_print_error(12, data);
+		data -> quit = 1;
+		ft_close_window(data);
 	}
 	if (!data)
 	{

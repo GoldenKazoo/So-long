@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/20 16:03:54 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/21 17:24:48 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_data
 	int		coups;
 	int		found_exit;
 	int		fd;
+	int		quit;
 	t_img	*empty_tile;
 	t_img	*wall_tile;
 	t_img	*player_tile;
@@ -85,7 +86,6 @@ t_data	*ft_data_init(t_data *data, int fd);
 void	ft_free_to_error(t_data *data, int state, char *line, char *long_line);
 void	ft_free_img(t_data *data);
 void	ft_free_all(t_data *data);
-int		ft_close_window(t_data *data);
 t_data	*ft_data_init(t_data *data, int fd);
 int		check_map_accessibility(t_data *data);
 void	ft_free_all_dup(t_data *data);

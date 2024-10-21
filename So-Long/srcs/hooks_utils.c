@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/20 16:54:11 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/21 17:23:57 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	ft_moove_up(int keycode, t_data *data)
 		== 'E' && (data -> map_elements[2] == 0))
 		{
 			ft_close_window(data);
-			exit(1);
 		}
 		if (data -> tab[(data -> p_pos_x) - 1][(data -> p_pos_y)] != 'E')
 		{
@@ -53,7 +52,6 @@ void	ft_moove_down(int keycode, t_data *data)
 			(data -> map_elements[2] == 0))
 		{
 			ft_close_window(data);
-			exit(1);
 		}
 		if (data -> tab[(data -> p_pos_x) + 1][(data -> p_pos_y)] != 'E')
 		{
@@ -80,7 +78,6 @@ void	ft_moove_right(int keycode, t_data *data)
 			&& (data -> map_elements[2] == 0))
 		{
 			ft_close_window(data);
-			exit(1);
 		}
 		if (data -> tab[(data -> p_pos_x)][(data -> p_pos_y) - 1] != 'E')
 		{
@@ -104,7 +101,6 @@ void	ft_moove_left(int keycode, t_data *data)
 			&& (data -> map_elements[2] == 0))
 		{
 			ft_close_window(data);
-			exit(1);
 		}
 		if (data -> tab[(data -> p_pos_x)][(data -> p_pos_y) + 1] == 'C')
 		{
