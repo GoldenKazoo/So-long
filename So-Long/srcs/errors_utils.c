@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 13:35:07 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/22 10:48:35 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/22 11:32:23 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_print_error3(int state, t_data *data)
 	{
 		free(data -> map_elements);
 		ft_free_img(data);
-		ft_putstr_fd("Error\nToo much exits.\n",2);
+		ft_putstr_fd("Error\nToo much exits.\n", 2);
 		close(data -> fd);
 		free(data);
 		exit(1);

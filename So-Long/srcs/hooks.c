@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/22 10:04:11 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/22 11:58:22 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,22 +58,22 @@ int	get_pos_y(t_data *data)
 
 int	inputs(int keycode, t_data *data)
 {
-	if (keycode == XK_Escape)
+	if (keycode == 65307)
 	{
 		ft_close_window(data);
 	}
-	if (keycode == XK_W || keycode == XK_w)
+	if (keycode == 119 || keycode == 119)
 		ft_moove_up(keycode, data);
-	if (keycode == XK_S || keycode == XK_s)
+	if (keycode == 115 || keycode == 115)
 		ft_moove_down(keycode, data);
-	if (keycode == XK_A || keycode == XK_a)
+	if (keycode == 97 || keycode == 97)
 		ft_moove_right(keycode, data);
-	if (keycode == XK_D || keycode == XK_d)
+	if (keycode == 100 || keycode == 100)
 		ft_moove_left(keycode, data);
-	if ((keycode == XK_W || keycode == XK_w
-			|| keycode == XK_S || keycode == XK_s
-			|| keycode == XK_A || keycode == XK_a
-			|| keycode == XK_D || keycode == XK_d))
+	if ((keycode == 119 || keycode == 119
+			|| keycode == 115 || keycode == 115
+			|| keycode == 97 || keycode == 97
+			|| keycode == 100 || keycode == 100))
 	{
 	}
 	return (0);

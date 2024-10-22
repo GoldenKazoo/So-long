@@ -1,4 +1,4 @@
-CC = clang
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 MLX_DIR = minilibx-linux
 MLX = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
@@ -14,7 +14,6 @@ SRCS = srcs/data_init.c srcs/errors.c srcs/floodfill.c srcs/free.c \
 
 OBJS = $(SRCS:.c=.o)
 NAME = so_long
-DEBUG = -g
 
 all: $(MLX_DIR)/libmlx.a $(NAME)
 
@@ -25,7 +24,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(MLX) -o $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(DEBUG) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
