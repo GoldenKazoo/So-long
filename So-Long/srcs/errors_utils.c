@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 13:35:07 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/20 16:54:58 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/22 09:27:29 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@ void	ft_print_error1(int state, t_data *data)
 {
 	if (state == 12)
 	{
+		get_next_line(data -> fd, -1);
 		ft_printf("Can't find path.\n");
-		exit(1);
 	}
 	if (data -> fd < 0)
 	{
 		free(data -> map_elements);
 		ft_free_img(data);
+		get_next_line(data -> fd, -1);
 		ft_printf("Error can't open map\n");
 		close(data -> fd);
 		free(data);
@@ -32,6 +33,7 @@ void	ft_print_error1(int state, t_data *data)
 	{
 		free(data -> map_elements);
 		ft_free_img(data);
+		get_next_line(data -> fd, -1);
 		ft_printf("Error char illegal\n");
 		close(data -> fd);
 		free(data);
@@ -45,6 +47,7 @@ void	ft_print_error2(int state, t_data *data)
 	{
 		free(data -> map_elements);
 		ft_free_img(data);
+		get_next_line(data -> fd, -1);
 		ft_printf("Error reading map dimensions.\n");
 		close(data -> fd);
 		free(data);
@@ -54,6 +57,7 @@ void	ft_print_error2(int state, t_data *data)
 	{
 		free(data -> map_elements);
 		ft_free_img(data);
+		get_next_line(data -> fd, -1);
 		ft_printf("Error no wall around.\n");
 		close(data -> fd);
 		free(data);

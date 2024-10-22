@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/21 17:24:31 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/22 08:54:12 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_check_arg_fd(int argc, char **argv, t_data *data)
 	data -> fd = open(argv[1], O_RDONLY);
 	if (data -> fd < 0)
 	{
-		ft_printf("Error: can't open file");
+		ft_printf("Error: can't open file\n");
 		return (1);
 	}
 	return (0);
