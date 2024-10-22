@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/21 17:24:48 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/22 10:25:29 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct s_data
 	char	**tab;
 	char	**copy;
 	int		*map_elements;
-	int		map_width;
-	int		map_height;
+	int		map_w;
+	int		map_h;
 	int		tile_dim;
 	int		p_pos_x;
 	int		p_pos_y;
@@ -43,6 +43,7 @@ typedef struct s_data
 	int		found_exit;
 	int		fd;
 	int		quit;
+	int		win_size;
 	t_img	*empty_tile;
 	t_img	*wall_tile;
 	t_img	*player_tile;
@@ -53,6 +54,7 @@ typedef struct s_data
 }	t_data;
 
 int		ft_close_window(t_data *data);
+void	ft_putstr_fd(char *s, int fd);
 void	ft_print_error1(int state, t_data *data);
 void	ft_print_error2(int state, t_data *data);
 void	ft_print_error3(int state, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 20:20:16 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/22 09:18:59 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/22 10:35:54 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ void	ft_data_init_img_aux(t_data *data, t_img *img, char *filename)
 		(data->mlx, filename, &(data->tile_dim), &(data->tile_dim));
 	if (!img->mlx_img)
 	{
-		ft_printf("Erreur lors du chargement de l'image %s\n", filename);
+		ft_putstr_fd("Erreur lors du chargement d'une image", 2);
 		exit(1);
 	}
 	img->addr = mlx_get_data_addr
 		(img->mlx_img, &(img->bpp), &(img->line_len), &(img->endian));
 	if (!img->addr)
 	{
-		ft_printf("Erreur lors de l'obtention des données de l'image\n");
+		ft_putstr_fd("Erreur lors de l'obtention des données de l'image\n", 2);
 		exit(1);
 	}
 }
@@ -44,20 +44,20 @@ t_data	*ft_data_init(t_data *data, int fd)
 	data = ft_return_map(data, fd);
 	if (!data || !data->tab)
 	{
-		ft_printf("Erreur lors du chargement de la carte\n");
+		ft_putstr_fd("Error\nCant load map\n", 2);
 		return (NULL);
 	}
 	data -> mlx = mlx_init();
 	if (!data->mlx)
 	{
-		ft_printf("Erreur: échec de l'initialisation de MLX\n");
+		ft_putstr_fd("Error:\n échec de l'initialisation de MLX\n", 2);
 		return (NULL);
 	}
 	data->win = mlx_new_window
-		(data->mlx, 64 * data->map_width, 64 * data->map_height, "So long");
+		(data->mlx, 64 * data->map_w, 64 * data->map_h, "So long");
 	if (!data->win)
 	{
-		ft_printf("Erreur: échec de la création de la fenêtre\n");
+		ft_putstr_fd("Error:\n échec de la création de la fenêtre\n", 2);
 		return (NULL);
 	}
 	data->tile_dim = 64;

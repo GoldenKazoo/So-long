@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/20 14:14:37 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/22 10:04:17 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	ft_paint_loop(t_data *data, t_img *img)
 
 	i = 0;
 	j = 0;
-	while (j < data -> map_height)
+	while (j < data -> map_h)
 	{
 		i = 0;
-		while (i < data -> map_width)
+		while (i < data -> map_w)
 		{
 			ft_paint_map_aux(data, i, j, img);
 			i++;
@@ -53,7 +53,7 @@ void	ft_paint_map(t_data *data)
 	if (!img)
 		return ;
 	img -> mlx_img = mlx_new_image
-		(data -> mlx, data -> map_width * 64, data -> map_height * 64);
+		(data -> mlx, data -> map_w * 64, data -> map_h * 64);
 	img -> addr = mlx_get_data_addr
 		(img -> mlx_img, &(img -> bpp), &(img -> line_len), &(img -> endian));
 	ft_paint_loop(data, img);

@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/22 08:54:12 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/22 10:47:20 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@ int	ft_check_arg_fd(int argc, char **argv, t_data *data)
 
 	if (argc != 2)
 	{
-		ft_printf("Error, to use: %s <map_file.ber>\n", argv[0]);
+		ft_putstr_fd("Error\nInvalid number of arguments", 2);
 		return (1);
 	}
 	len = ft_strlen(argv[1]);
 	if (len <= 4 || ft_strncmp(argv[1] + len - 4, ".ber", len) != 0
 		|| ft_strncmp(argv[1] + len - 5, "/.ber", len) == 0)
 	{
-		ft_printf("Error: invalid file\n");
+		ft_putstr_fd("Error\nInvalid file\n", 2);
 		return (1);
 	}
 	data -> fd = open(argv[1], O_RDONLY);
 	if (data -> fd < 0)
 	{
-		ft_printf("Error: can't open file\n");
+		ft_putstr_fd("Error\nCan't open file\n", 2);
 		return (1);
 	}
 	return (0);
@@ -44,7 +44,7 @@ void	ft_check_arg(int argc, char **argv, t_data *data)
 		exit (1);
 	if (argv[1] == NULL)
 	{
-		ft_printf("Error, to use: %s <map_file.ber>\n", argv[0]);
+		ft_printf("Error\nNo file entered\n", argv[0]);
 		free(data);
 		exit (1);
 	}
@@ -54,6 +54,7 @@ void	ft_check_arg(int argc, char **argv, t_data *data)
 		exit (1);
 	}
 	data -> quit = 0;
+	data -> win_size = 0;
 }
 
 void	ft_init_game(t_data *data)

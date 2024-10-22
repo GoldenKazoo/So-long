@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/20 17:01:14 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/22 10:13:13 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_check_last_line(t_data *data, char *long_line)
 	if (!long_line)
 		ft_print_error(10, data);
 	i = ft_strlen(long_line) - 1;
-	while ((ft_strlen(long_line) - data -> map_width) < i)
+	while ((ft_strlen(long_line) - data -> map_w) < i)
 	{
 		if (long_line[i] != '1' && long_line[i] != '\n')
 			return (3);
@@ -85,6 +85,7 @@ void	parsing_loop(t_data *data, char *line, char **long_line, int state)
 	int	line_len;
 
 	state = ft_check_line(data, line);
+	data -> win_size = (data -> map_w * 64) * (data -> map_h * 64);
 	if (state != 0)
 	{
 		ft_free_to_error(data, state, line, *long_line);
@@ -92,12 +93,12 @@ void	parsing_loop(t_data *data, char *line, char **long_line, int state)
 	line_len = ft_strlen(line);
 	if (ft_strchr(line, '\n') == NULL)
 		line_len++;
-	if (line_len != data -> map_width)
+	if (line_len != data -> map_w)
 	{
 		state = 2;
 		ft_free_to_error(data, state, line, *long_line);
 	}
-	if (line != NULL && (data -> map_height) != 0)
+	if (line != NULL && (data -> map_h) != 0)
 	{
 		*long_line = ft_strjoin(*long_line, line);
 		if (!long_line)

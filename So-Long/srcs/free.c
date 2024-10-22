@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 19:51:29 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/22 09:02:06 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/22 10:03:38 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_free_all(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < (data -> map_height))
+	while (i < (data -> map_h))
 	{
 		free(data -> tab[i]);
 		i++;
@@ -54,7 +54,7 @@ void	ft_free_all_dup(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < (data -> map_height))
+	while (i < (data -> map_h))
 	{
 		free(data -> copy[i]);
 		i++;

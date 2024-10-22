@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 13:35:07 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/22 09:27:29 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/22 10:48:35 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ void	ft_print_error1(int state, t_data *data)
 	if (state == 12)
 	{
 		get_next_line(data -> fd, -1);
-		ft_printf("Can't find path.\n");
+		ft_putstr_fd("Error\nCan't find path.\n", 2);
 	}
 	if (data -> fd < 0)
 	{
 		free(data -> map_elements);
 		ft_free_img(data);
 		get_next_line(data -> fd, -1);
-		ft_printf("Error can't open map\n");
+		ft_putstr_fd("Error\nCan't open map\n", 2);
 		close(data -> fd);
 		free(data);
 		exit(1);
@@ -34,7 +34,7 @@ void	ft_print_error1(int state, t_data *data)
 		free(data -> map_elements);
 		ft_free_img(data);
 		get_next_line(data -> fd, -1);
-		ft_printf("Error char illegal\n");
+		ft_putstr_fd("Error\nChar illegal\n", 2);
 		close(data -> fd);
 		free(data);
 		exit(1);
@@ -48,7 +48,7 @@ void	ft_print_error2(int state, t_data *data)
 		free(data -> map_elements);
 		ft_free_img(data);
 		get_next_line(data -> fd, -1);
-		ft_printf("Error reading map dimensions.\n");
+		ft_putstr_fd("Error\nInvalid map dimensions.\n", 2);
 		close(data -> fd);
 		free(data);
 		exit(1);
@@ -58,7 +58,7 @@ void	ft_print_error2(int state, t_data *data)
 		free(data -> map_elements);
 		ft_free_img(data);
 		get_next_line(data -> fd, -1);
-		ft_printf("Error no wall around.\n");
+		ft_putstr_fd("Error\nNo wall around.\n", 2);
 		close(data -> fd);
 		free(data);
 		exit(1);
@@ -71,7 +71,7 @@ void	ft_print_error3(int state, t_data *data)
 	{
 		free(data -> map_elements);
 		ft_free_img(data);
-		ft_printf("Error no exit.\n");
+		ft_putstr_fd("Error\nNo exit.\n", 2);
 		close(data -> fd);
 		free(data);
 		exit(1);
@@ -80,7 +80,7 @@ void	ft_print_error3(int state, t_data *data)
 	{
 		free(data -> map_elements);
 		ft_free_img(data);
-		ft_printf("Error too much exits.\n");
+		ft_putstr_fd("Error\nToo much exits.\n",2);
 		close(data -> fd);
 		free(data);
 		exit(1);
@@ -93,7 +93,7 @@ void	ft_print_error4(int state, t_data *data)
 	{
 		free(data -> map_elements);
 		ft_free_img(data);
-		ft_printf("Error no player.\n");
+		ft_putstr_fd("Error\nNo player.\n", 2);
 		close(data -> fd);
 		free(data);
 		exit(1);
@@ -102,7 +102,7 @@ void	ft_print_error4(int state, t_data *data)
 	{
 		free(data -> map_elements);
 		ft_free_img(data);
-		ft_printf("Error too much player.\n");
+		ft_putstr_fd("Error\nToo much player.\n", 2);
 		close(data -> fd);
 		free(data);
 		exit(1);
@@ -115,7 +115,7 @@ void	ft_print_error5(int state, t_data *data)
 	{
 		free(data -> map_elements);
 		ft_free_img(data);
-		ft_printf("Error not enough collectible.\n");
+		ft_putstr_fd("Error\nNot enough collectible.\n", 2);
 		close(data -> fd);
 		free(data);
 		exit(1);
@@ -124,7 +124,7 @@ void	ft_print_error5(int state, t_data *data)
 	{
 		free(data -> map_elements);
 		ft_free_img(data);
-		ft_printf("Empty file.\n");
+		ft_putstr_fd("Error\nEmpty file.\n", 2);
 		close(data -> fd);
 		free(data);
 		exit(1);

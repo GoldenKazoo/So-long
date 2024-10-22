@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/20 16:54:33 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/22 10:29:30 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_print_error(int state, t_data *data)
 	{
 		free(data -> map_elements);
 		ft_free_img(data);
-		ft_printf("Can't init data.\n");
+		ft_putstr_fd("Error\nCan't init data.\n", 2);
 		close(data -> fd);
 		free(data);
 		exit(1);
@@ -33,7 +33,7 @@ int	ft_print_error(int state, t_data *data)
 		get_next_line(data -> fd, -1);
 		free(data -> map_elements);
 		ft_free_img(data);
-		ft_printf("Map is too big.\n");
+		ft_putstr_fd("Error\nMap is too big.\n", 2);
 		close(data -> fd);
 		free(data);
 		exit(1);

@@ -6,7 +6,7 @@
 /*   By: zchagar <zchagar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:39:36 by zchagar           #+#    #+#             */
-/*   Updated: 2024/10/21 17:24:02 by zchagar          ###   ########.fr       */
+/*   Updated: 2024/10/22 10:04:11 by zchagar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	get_pos_x(t_data *data)
 
 	i = 0;
 	j = 0;
-	while (i < data -> map_height)
+	while (i < data -> map_h)
 	{
 		j = 0;
-		while (j < data -> map_width)
+		while (j < data -> map_w)
 		{
 			if (data -> tab[i][j] == 'P')
 				return (i);
@@ -42,10 +42,10 @@ int	get_pos_y(t_data *data)
 
 	i = 0;
 	j = 0;
-	while (i < data -> map_height)
+	while (i < data -> map_h)
 	{
 		j = 0;
-		while (j < data -> map_width)
+		while (j < data -> map_w)
 		{
 			if (data -> tab[i][j] == 'P')
 				return (j);
